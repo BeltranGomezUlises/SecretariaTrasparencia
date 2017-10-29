@@ -12,7 +12,7 @@ import javax.ws.rs.core.Application;
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
-@javax.ws.rs.ApplicationPath("webresources")
+@javax.ws.rs.ApplicationPath("api")
 public class ApplicationConfig extends Application {
 
     @Override
@@ -36,6 +36,8 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(com.ub.st.services.commons.ServiceFacade.class);
+        resources.add(com.ub.st.services.generales.Accesos.class);
         resources.add(com.ub.st.services.negocio.Perfiles.class);
         resources.add(com.ub.st.services.negocio.Permisos.class);
         resources.add(com.ub.st.services.negocio.Secretarias.class);

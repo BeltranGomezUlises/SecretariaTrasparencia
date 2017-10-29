@@ -50,7 +50,7 @@ public class Response<T> {
         this.meta = new MetaData(status, devMessage);
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
