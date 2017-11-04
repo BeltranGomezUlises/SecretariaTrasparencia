@@ -17,7 +17,7 @@
 package com.ub.st.entities.commons;
 
 /**
- * clase padre para cualquier entidad que no es necesariamente un catalogo y no requiere tener un usuario credor
+ * clase padre para entidades SQL
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  * @param <K> tipo de dato de la llave primaria de la entidad
  */

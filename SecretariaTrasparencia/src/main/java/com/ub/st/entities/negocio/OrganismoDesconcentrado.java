@@ -5,78 +5,64 @@
  */
 package com.ub.st.entities.negocio;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ub.st.entities.commons.EntitySQL;
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- * Entidad de permisos
+ * Entidad de organismos desconcentrados
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Entity
-@Table(name = "permiso")
-public class Permiso extends EntitySQL<String> implements Serializable {
+@Table(name = "organismo_desconcentrado")
+public class OrganismoDesconcentrado extends EntitySQL<Integer> implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 2147483647)
     @Column(name = "id")
-    private String id;
+    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 2147483647)
-    @Column(name = "descripcion")
-    private String descripcion;
-    @ManyToMany(mappedBy = "permisoList", fetch = FetchType.EAGER)
-    private List<Perfil> perfilList;
+    @Column(name = "nombre")
+    private String nombre;
 
-    public Permiso() {
+    public OrganismoDesconcentrado() {
     }
 
-    public Permiso(String id) {
+    public OrganismoDesconcentrado(Integer id) {
         this.id = id;
     }
 
-    public Permiso(String id, String descripcion) {
+    public OrganismoDesconcentrado(Integer id, String nombre) {
         this.id = id;
-        this.descripcion = descripcion;
+        this.nombre = nombre;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-    
-    @JsonIgnore
-    public List<Perfil> getPerfilList() {
-        return perfilList;
-    }
-
-    public void setPerfilList(List<Perfil> perfilList) {
-        this.perfilList = perfilList;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     @Override
@@ -89,10 +75,10 @@ public class Permiso extends EntitySQL<String> implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Permiso)) {
+        if (!(object instanceof OrganismoDesconcentrado)) {
             return false;
         }
-        Permiso other = (Permiso) object;
+        OrganismoDesconcentrado other = (OrganismoDesconcentrado) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -101,11 +87,11 @@ public class Permiso extends EntitySQL<String> implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ub.st.entities.negocio.Permiso[ id=" + id + " ]";
+        return "com.ub.st.entities.negocio.OrganismoDesconcentrado[ id=" + id + " ]";
     }
 
     @Override
-    public String obtenIdEntidad() {
+    public Integer obtenIdEntidad() {
         return id;
     }
     

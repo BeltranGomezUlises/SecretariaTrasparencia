@@ -21,7 +21,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- *
+ * Entidad de usuarios
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Entity

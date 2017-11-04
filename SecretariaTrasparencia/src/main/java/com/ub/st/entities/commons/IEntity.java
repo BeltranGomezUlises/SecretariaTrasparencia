@@ -19,7 +19,7 @@ package com.ub.st.entities.commons;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
- * clase padre de cualquier entidad de la configuracion general
+ * Interfaz base para entidades
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  * @param <K> tipo de dato de llave primaria de la entidad
  */

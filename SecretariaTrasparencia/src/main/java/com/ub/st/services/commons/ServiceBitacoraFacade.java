@@ -27,7 +27,6 @@ import com.ub.st.utils.exceptions.TokenInvalidoException;
 import com.ub.st.utils.responses.Response;
 import java.util.Date;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
@@ -36,6 +35,7 @@ import javax.ws.rs.PathParam;
 /**
  * clase de servicios para bitacoras de acciones
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
+ * @param <M> clase manejadora de entidades
  * @param <T> entidad a manejar por esta clase servicio
  * @param <K> tipo de dato de llave primaria de la entidad a menejar por esta clase servicio
  */
