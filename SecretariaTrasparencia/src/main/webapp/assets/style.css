@@ -1,3 +1,7 @@
+body {
+    font-size: 13px;
+}
+
 .global-container {
     position: absolute;
     height: 100%;

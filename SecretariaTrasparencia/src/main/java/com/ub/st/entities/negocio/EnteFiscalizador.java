@@ -11,29 +11,25 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Cacheable;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- * Entidad de perfiles
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Entity
 @Cacheable(false)
-@Table(name = "perfil")
-public class Perfil extends EntitySQL<Integer> implements Serializable {
+@Table(name = "ente_fiscalizador")
+public class EnteFiscalizador extends EntitySQL<Integer> implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -46,22 +42,17 @@ public class Perfil extends EntitySQL<Integer> implements Serializable {
     @Size(min = 1, max = 2147483647)
     @Column(name = "nombre")
     private String nombre;
-    @JoinTable(name = "perfiles_permisos", joinColumns = {
-        @JoinColumn(name = "perfil_id", referencedColumnName = "id")}, inverseJoinColumns = {
-        @JoinColumn(name = "permiso_id", referencedColumnName = "id")})
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Permiso> permisoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "perfil", fetch = FetchType.EAGER)
-    private List<Usuario> usuarioList;
+    @ManyToMany(mappedBy = "enteFiscalizadorList", fetch = FetchType.EAGER)
+    private List<Auditoria> auditoriaList;
 
-    public Perfil() {
+    public EnteFiscalizador() {
     }
 
-    public Perfil(Integer id) {
+    public EnteFiscalizador(Integer id) {
         this.id = id;
     }
 
-    public Perfil(Integer id, String nombre) {
+    public EnteFiscalizador(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
@@ -81,22 +72,14 @@ public class Perfil extends EntitySQL<Integer> implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    public List<Permiso> getPermisoList() {
-        return permisoList;
-    }
-
-    public void setPermisoList(List<Permiso> permisoList) {
-        this.permisoList = permisoList;
-    }
 
     @JsonIgnore
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
+    public List<Auditoria> getAuditoriaList() {
+        return auditoriaList;
     }
 
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
+    public void setAuditoriaList(List<Auditoria> auditoriaList) {
+        this.auditoriaList = auditoriaList;
     }
 
     @Override
@@ -109,10 +92,10 @@ public class Perfil extends EntitySQL<Integer> implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Perfil)) {
+        if (!(object instanceof EnteFiscalizador)) {
             return false;
         }
-        Perfil other = (Perfil) object;
+        EnteFiscalizador other = (EnteFiscalizador) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -121,7 +104,7 @@ public class Perfil extends EntitySQL<Integer> implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ub.st.entities.negocio.Perfil[ id=" + id + " ]";
+        return "com.ub.st.entities.negocio.EnteFiscalizador[ id=" + id + " ]";
     }
 
     @Override

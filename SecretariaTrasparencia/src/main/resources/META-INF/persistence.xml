@@ -10,6 +10,9 @@
     <class>com.ub.st.entities.negocio.CoordinacionGeneral</class>
     <class>com.ub.st.entities.negocio.OrganismoDescentralizado</class>
     <class>com.ub.st.entities.negocio.OrganismoDesconcentrado</class>
+    <class>com.ub.st.entities.negocio.Auditoria</class>
+    <class>com.ub.st.entities.negocio.EnteFiscalizador</class>
+    <class>com.ub.st.entities.negocio.EnteFiscalizado</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <!-- jdbc -->

@@ -5,24 +5,23 @@
  */
 package com.ub.st.managers.negocio;
 
-import com.ub.st.daos.negocio.DaoPerfil;
-import com.ub.st.entities.negocio.Perfil;
+import com.ub.st.daos.negocio.DaoEnteFilcalizador;
+import com.ub.st.entities.negocio.EnteFiscalizador;
 import com.ub.st.managers.commons.ManagerSQL;
 
 /**
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
-public class ManagerPerfil extends ManagerSQL<Perfil, Integer> {
+public class ManagerEnteFiscalizador extends ManagerSQL<EnteFiscalizador, Integer> {
 
-    public ManagerPerfil() {
-        super(new DaoPerfil());
+    public ManagerEnteFiscalizador() {
+        super(new DaoEnteFilcalizador());
     }
 
     @Override
     public String nombreColeccionParaRegistros() throws UnsupportedOperationException {
-        return "perfiles";
+        return "entesFiscalizadores";
     }
-    
     
 }
