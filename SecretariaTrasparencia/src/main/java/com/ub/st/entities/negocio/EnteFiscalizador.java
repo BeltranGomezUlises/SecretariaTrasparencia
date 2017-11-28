@@ -10,7 +10,6 @@ import com.ub.st.entities.commons.EntitySQL;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,6 +17,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -27,7 +27,6 @@ import javax.validation.constraints.Size;
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Entity
-@Cacheable(false)
 @Table(name = "ente_fiscalizador")
 public class EnteFiscalizador extends EntitySQL<Integer> implements Serializable {
 
@@ -41,9 +40,9 @@ public class EnteFiscalizador extends EntitySQL<Integer> implements Serializable
     @NotNull
     @Size(min = 1, max = 2147483647)
     @Column(name = "nombre")
-    private String nombre;
-    @ManyToMany(mappedBy = "enteFiscalizadorList", fetch = FetchType.EAGER)
-    private List<Auditoria> auditoriaList;
+    private String nombre;  
+    @OneToMany(mappedBy = "enteFiscalizador", fetch = FetchType.EAGER)
+    private List<AreaFiscalizadora> areaFiscalizadoraList;
 
     public EnteFiscalizador() {
     }
@@ -73,13 +72,12 @@ public class EnteFiscalizador extends EntitySQL<Integer> implements Serializable
         this.nombre = nombre;
     }
 
-    @JsonIgnore
-    public List<Auditoria> getAuditoriaList() {
-        return auditoriaList;
+    public List<AreaFiscalizadora> getAreaFiscalizadoraList() {
+        return areaFiscalizadoraList;
     }
 
-    public void setAuditoriaList(List<Auditoria> auditoriaList) {
-        this.auditoriaList = auditoriaList;
+    public void setAreaFiscalizadoraList(List<AreaFiscalizadora> areaFiscalizadoraList) {
+        this.areaFiscalizadoraList = areaFiscalizadoraList;
     }
 
     @Override
@@ -96,10 +94,7 @@ public class EnteFiscalizador extends EntitySQL<Integer> implements Serializable
             return false;
         }
         EnteFiscalizador other = (EnteFiscalizador) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 
     @Override

@@ -5,6 +5,7 @@
  */
 package com.ub.st.entities.negocio;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ub.st.entities.commons.EntitySQL;
 import java.io.Serializable;
 import java.util.List;
@@ -23,13 +24,14 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+
 /**
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Entity
-@Table(name = "auditoria")
 @Cacheable(false)
+@Table(name = "auditoria")
 public class Auditoria extends EntitySQL<Integer> implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -69,17 +71,17 @@ public class Auditoria extends EntitySQL<Integer> implements Serializable {
     @NotNull
     @Size(min = 1, max = 2147483647)
     @Column(name = "objetivos")
-    private String objetivos;
-    @JoinTable(name = "auditorias_entes_fiscalizadores", joinColumns = {
-        @JoinColumn(name = "auditoria", referencedColumnName = "id")}, inverseJoinColumns = {
-        @JoinColumn(name = "ente_fiscalizador", referencedColumnName = "id")})
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<EnteFiscalizador> enteFiscalizadorList;
+    private String objetivos;   
     @JoinTable(name = "auditorias_entes_filcalizados", joinColumns = {
         @JoinColumn(name = "auditoria", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "ente_fiscalizado", referencedColumnName = "id")})
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<EnteFiscalizado> enteFiscalizadoList;
+    private List<EnteFiscalizado> enteFiscalizadoList;    
+    @JoinTable(name = "auditorias_areas_fiscalizadoras", joinColumns = {
+        @JoinColumn(name = "auditoria", referencedColumnName = "id")}, inverseJoinColumns = {
+        @JoinColumn(name = "area_fiscalizadora", referencedColumnName = "id")})
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<AreaFiscalizadora> areaFiscalizadoraList;
 
     public Auditoria() {
     }
@@ -162,21 +164,21 @@ public class Auditoria extends EntitySQL<Integer> implements Serializable {
     public void setObjetivos(String objetivos) {
         this.objetivos = objetivos;
     }
-
-    public List<EnteFiscalizador> getEnteFiscalizadorList() {
-        return enteFiscalizadorList;
-    }
-
-    public void setEnteFiscalizadorList(List<EnteFiscalizador> enteFiscalizadorList) {
-        this.enteFiscalizadorList = enteFiscalizadorList;
-    }
-
+  
     public List<EnteFiscalizado> getEnteFiscalizadoList() {
         return enteFiscalizadoList;
     }
 
     public void setEnteFiscalizadoList(List<EnteFiscalizado> enteFiscalizadoList) {
         this.enteFiscalizadoList = enteFiscalizadoList;
+    }
+   
+    public List<AreaFiscalizadora> getAreaFiscalizadoraList() {
+        return areaFiscalizadoraList;
+    }
+
+    public void setAreaFiscalizadoraList(List<AreaFiscalizadora> areaFiscalizadoraList) {
+        this.areaFiscalizadoraList = areaFiscalizadoraList;
     }
 
     @Override

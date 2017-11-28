@@ -16,7 +16,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -26,8 +29,8 @@ import javax.validation.constraints.Size;
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Entity
-@Table(name = "ente_fiscalizado")
-public class EnteFiscalizado extends EntitySQL<Integer> implements Serializable {
+@Table(name = "area_fiscalizadora")
+public class AreaFiscalizadora extends EntitySQL<Integer> implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -39,18 +42,21 @@ public class EnteFiscalizado extends EntitySQL<Integer> implements Serializable 
     @NotNull
     @Size(min = 1, max = 2147483647)
     @Column(name = "nombre")
-    private String nombre;
-    @ManyToMany(mappedBy = "enteFiscalizadoList", fetch = FetchType.EAGER)
+    private String nombre;      
+    @ManyToMany(mappedBy = "areaFiscalizadoraList", fetch = FetchType.EAGER)
     private List<Auditoria> auditoriaList;
+    @JoinColumn(name = "ente_fiscalizador", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    private EnteFiscalizador enteFiscalizador;
 
-    public EnteFiscalizado() {
+    public AreaFiscalizadora() {
     }
 
-    public EnteFiscalizado(Integer id) {
+    public AreaFiscalizadora(Integer id) {
         this.id = id;
     }
 
-    public EnteFiscalizado(Integer id, String nombre) {
+    public AreaFiscalizadora(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
@@ -70,7 +76,7 @@ public class EnteFiscalizado extends EntitySQL<Integer> implements Serializable 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    
     @JsonIgnore
     public List<Auditoria> getAuditoriaList() {
         return auditoriaList;
@@ -78,6 +84,15 @@ public class EnteFiscalizado extends EntitySQL<Integer> implements Serializable 
 
     public void setAuditoriaList(List<Auditoria> auditoriaList) {
         this.auditoriaList = auditoriaList;
+    }
+
+    @JsonIgnore
+    public EnteFiscalizador getEnteFiscalizador() {
+        return enteFiscalizador;
+    }
+
+    public void setEnteFiscalizador(EnteFiscalizador enteFiscalizador) {
+        this.enteFiscalizador = enteFiscalizador;
     }
 
     @Override
@@ -90,16 +105,19 @@ public class EnteFiscalizado extends EntitySQL<Integer> implements Serializable 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof EnteFiscalizado)) {
+        if (!(object instanceof AreaFiscalizadora)) {
             return false;
         }
-        EnteFiscalizado other = (EnteFiscalizado) object;
-        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
+        AreaFiscalizadora other = (AreaFiscalizadora) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "com.ub.st.entities.negocio.EnteFiscalizado[ id=" + id + " ]";
+        return "com.ub.st.entities.negocio.AreaFiscalizadora[ id=" + id + " ]";
     }
 
     @Override
