@@ -4,7 +4,7 @@
 
     <groupId>com.ub</groupId>
     <artifactId>st</artifactId>
-    <version>0.1.0</version>
+    <version>0.4</version>
     <packaging>war</packaging>
 
     <name>Secretaria De Trasparencia</name>

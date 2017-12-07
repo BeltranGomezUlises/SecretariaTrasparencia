@@ -39,15 +39,19 @@ public class ApplicationConfig extends Application {
         resources.add(com.ub.st.services.commons.ServiceFacade.class);
         resources.add(com.ub.st.services.generales.Accesos.class);
         resources.add(com.ub.st.services.negocio.Auditorias.class);
+        resources.add(com.ub.st.services.negocio.Contratistas.class);
         resources.add(com.ub.st.services.negocio.CoordinacionesGenerales.class);
         resources.add(com.ub.st.services.negocio.EntesFiscalizadores.class);
         resources.add(com.ub.st.services.negocio.EntesFiscalizados.class);
         resources.add(com.ub.st.services.negocio.EntidadesCoordinadas.class);
+        resources.add(com.ub.st.services.negocio.Graficas.class);
+        resources.add(com.ub.st.services.negocio.Obervaciones.class);
         resources.add(com.ub.st.services.negocio.OrganismosDescentralizados.class);
         resources.add(com.ub.st.services.negocio.OrganismosDesconcentrados.class);
         resources.add(com.ub.st.services.negocio.Perfiles.class);
         resources.add(com.ub.st.services.negocio.Permisos.class);
         resources.add(com.ub.st.services.negocio.Secretarias.class);
+        resources.add(com.ub.st.services.negocio.Seguimientos.class);
         resources.add(com.ub.st.services.negocio.Usuarios.class);
     }
     

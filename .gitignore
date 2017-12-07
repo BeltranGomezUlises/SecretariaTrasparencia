@@ -22,3 +22,5 @@
 hs_err_pid*
 /SecretariaTrasparencia/target/
 /SecretariaTrasparencia/src/main/resources/META-INF/persistence.xml
+
+SecretariaTrasparencia/src/main/webapp/

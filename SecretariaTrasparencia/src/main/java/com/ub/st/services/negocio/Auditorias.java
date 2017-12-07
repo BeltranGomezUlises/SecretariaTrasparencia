@@ -7,11 +7,18 @@ package com.ub.st.services.negocio;
 
 import com.ub.st.entities.negocio.Auditoria;
 import com.ub.st.managers.negocio.ManagerAuditoria;
+import com.ub.st.models.negocio.ModelImportePendiente;
 import com.ub.st.services.commons.ServiceFacade;
+import static com.ub.st.utils.UtilsService.*;
+import com.ub.st.utils.exceptions.TokenExpiradoException;
+import com.ub.st.utils.exceptions.TokenInvalidoException;
 import com.ub.st.utils.responses.Response;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 
 /**
  * servicios lcrud para auditorias
@@ -24,31 +31,22 @@ public class Auditorias extends ServiceFacade<ManagerAuditoria, Auditoria, Integ
         super(ManagerAuditoria.class);
     }
 
-    @Override
-    public Response<Auditoria> eliminar(HttpServletRequest request, String token, Auditoria t) {
-        return super.eliminar(request, token, t); //To change body of generated methods, choose Tools | Templates.
+    @GET
+    @Path("/importePendienteAuditoria/{id}")
+    public Response<ModelImportePendiente> importePendienteAuditoria(@HeaderParam("Authorization") String token, @PathParam("id") int id){
+        Response<ModelImportePendiente> r = new Response();
+        try {
+            ManagerAuditoria managerAuditoria = new ManagerAuditoria();
+            managerAuditoria.setToken(token);  
+            r.setData(new ModelImportePendiente(managerAuditoria.importePendienteAuditoria(id)));            
+        } catch (TokenExpiradoException | TokenInvalidoException e) {
+            setInvalidTokenResponse(r);
+        } catch (Exception ex) {
+            Logger.getLogger(Auditorias.class.getName()).log(Level.SEVERE, null, ex);
+            setErrorResponse(r, ex);
+        }
+        
+        return r;
     }
-
-    @Override
-    public Response<Auditoria> modificar(HttpServletRequest request, String token, Auditoria t) {
-        return super.modificar(request, token, t); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Response<Auditoria> alta(HttpServletRequest request, String token, Auditoria t) {
-        return super.alta(request, token, t); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Response<Auditoria> detalle(HttpServletRequest request, String token, Integer id) {
-        return super.detalle(request, token, id); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Response<List<Auditoria>> listar(HttpServletRequest request, String token) {
-        return super.listar(request, token); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
     
 }

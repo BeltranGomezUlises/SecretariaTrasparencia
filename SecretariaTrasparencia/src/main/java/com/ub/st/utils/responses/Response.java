@@ -18,7 +18,7 @@ public class Response<T> {
     private T data;
     private MetaData meta;
         
-    public Response() {
+    public Response() {        
         meta = new MetaData();
     }
 

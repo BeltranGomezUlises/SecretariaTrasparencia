@@ -14,13 +14,19 @@
     <class>com.ub.st.entities.negocio.EnteFiscalizador</class>
     <class>com.ub.st.entities.negocio.EnteFiscalizado</class>
     <class>com.ub.st.entities.negocio.AreaFiscalizadora</class>
+    <class>com.ub.st.entities.negocio.Observacion</class>
+    <class>com.ub.st.entities.negocio.Seguimiento</class>
+    <class>com.ub.st.entities.negocio.Contratista</class>
+    <class>com.ub.st.entities.negocio.TipoObservacion</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <!-- jdbc -->
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5532/st"/>
+      <!--<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/st"/>-->
       <property name="javax.persistence.jdbc.user" value="postgres"/>
       <property name="javax.persistence.jdbc.password" value="postgres.90Y9B8yh$123"/>
+      <!--<property name="javax.persistence.jdbc.password" value="2424"/>-->
       <!-- eclipse link -->
       <property name="eclipselink.ddl-generation" value="create-tables"/>
       <property name="eclipselink.ddl-generation.output-mode" value="database"/>

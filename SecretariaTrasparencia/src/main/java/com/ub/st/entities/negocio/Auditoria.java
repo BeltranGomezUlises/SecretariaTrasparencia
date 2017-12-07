@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Cacheable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,10 +21,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 
 /**
  *
@@ -56,7 +57,7 @@ public class Auditoria extends EntitySQL<Integer> implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "numero")
-    private int numero;
+    private String numero;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 2147483647)
@@ -71,17 +72,19 @@ public class Auditoria extends EntitySQL<Integer> implements Serializable {
     @NotNull
     @Size(min = 1, max = 2147483647)
     @Column(name = "objetivos")
-    private String objetivos;   
+    private String objetivos;
     @JoinTable(name = "auditorias_entes_filcalizados", joinColumns = {
         @JoinColumn(name = "auditoria", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "ente_fiscalizado", referencedColumnName = "id")})
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<EnteFiscalizado> enteFiscalizadoList;    
+    private List<EnteFiscalizado> enteFiscalizadoList;
     @JoinTable(name = "auditorias_areas_fiscalizadoras", joinColumns = {
         @JoinColumn(name = "auditoria", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "area_fiscalizadora", referencedColumnName = "id")})
     @ManyToMany(fetch = FetchType.EAGER)
     private List<AreaFiscalizadora> areaFiscalizadoraList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "auditoria", fetch = FetchType.EAGER)
+    private List<Observacion> observacionList;
 
     public Auditoria() {
     }
@@ -90,7 +93,7 @@ public class Auditoria extends EntitySQL<Integer> implements Serializable {
         this.id = id;
     }
 
-    public Auditoria(Integer id, int añoRealiza, int añoRevisa, String situacionActual, int numero, String nombre, String descripcion, String objetivos) {
+    public Auditoria(Integer id, int añoRealiza, int añoRevisa, String situacionActual, String numero, String nombre, String descripcion, String objetivos) {
         this.id = id;
         this.añoRealiza = añoRealiza;
         this.añoRevisa = añoRevisa;
@@ -133,11 +136,11 @@ public class Auditoria extends EntitySQL<Integer> implements Serializable {
         this.situacionActual = situacionActual;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
@@ -164,7 +167,7 @@ public class Auditoria extends EntitySQL<Integer> implements Serializable {
     public void setObjetivos(String objetivos) {
         this.objetivos = objetivos;
     }
-  
+
     public List<EnteFiscalizado> getEnteFiscalizadoList() {
         return enteFiscalizadoList;
     }
@@ -172,7 +175,7 @@ public class Auditoria extends EntitySQL<Integer> implements Serializable {
     public void setEnteFiscalizadoList(List<EnteFiscalizado> enteFiscalizadoList) {
         this.enteFiscalizadoList = enteFiscalizadoList;
     }
-   
+
     public List<AreaFiscalizadora> getAreaFiscalizadoraList() {
         return areaFiscalizadoraList;
     }
@@ -210,5 +213,14 @@ public class Auditoria extends EntitySQL<Integer> implements Serializable {
     public Integer obtenIdEntidad() {
         return id;
     }
-    
+
+    @JsonIgnore
+    public List<Observacion> getObservacionList() {
+        return observacionList;
+    }
+
+    public void setObservacionList(List<Observacion> observacionList) {
+        this.observacionList = observacionList;
+    }
+
 }

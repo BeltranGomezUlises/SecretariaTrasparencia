@@ -10,15 +10,14 @@ import com.ub.st.entities.commons.EntitySQL;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -28,8 +27,8 @@ import javax.validation.constraints.Size;
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Entity
-@Table(name = "area_fiscalizadora")
-public class AreaFiscalizadora extends EntitySQL<Integer> implements Serializable {
+@Table(name = "contratista")
+public class Contratista extends EntitySQL<Integer> implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,21 +40,18 @@ public class AreaFiscalizadora extends EntitySQL<Integer> implements Serializabl
     @NotNull
     @Size(min = 1, max = 2147483647)
     @Column(name = "nombre")
-    private String nombre;      
-    @ManyToMany(mappedBy = "areaFiscalizadoraList", fetch = FetchType.EAGER)
-    private List<Auditoria> auditoriaList;
-    @JoinColumn(name = "ente_fiscalizador", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private EnteFiscalizador enteFiscalizador;
+    private String nombre;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "contratista", fetch = FetchType.EAGER)
+    private List<Observacion> observacionList;
 
-    public AreaFiscalizadora() {
+    public Contratista() {
     }
 
-    public AreaFiscalizadora(Integer id) {
+    public Contratista(Integer id) {
         this.id = id;
     }
 
-    public AreaFiscalizadora(Integer id, String nombre) {
+    public Contratista(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
@@ -75,23 +71,14 @@ public class AreaFiscalizadora extends EntitySQL<Integer> implements Serializabl
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    @JsonIgnore
-    public List<Auditoria> getAuditoriaList() {
-        return auditoriaList;
-    }
-
-    public void setAuditoriaList(List<Auditoria> auditoriaList) {
-        this.auditoriaList = auditoriaList;
-    }
 
     @JsonIgnore
-    public EnteFiscalizador getEnteFiscalizador() {
-        return enteFiscalizador;
+    public List<Observacion> getObservacionList() {
+        return observacionList;
     }
 
-    public void setEnteFiscalizador(EnteFiscalizador enteFiscalizador) {
-        this.enteFiscalizador = enteFiscalizador;
+    public void setObservacionList(List<Observacion> observacionList) {
+        this.observacionList = observacionList;
     }
 
     @Override
@@ -104,10 +91,10 @@ public class AreaFiscalizadora extends EntitySQL<Integer> implements Serializabl
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof AreaFiscalizadora)) {
+        if (!(object instanceof Contratista)) {
             return false;
         }
-        AreaFiscalizadora other = (AreaFiscalizadora) object;
+        Contratista other = (Contratista) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -116,7 +103,7 @@ public class AreaFiscalizadora extends EntitySQL<Integer> implements Serializabl
 
     @Override
     public String toString() {
-        return "com.ub.st.entities.negocio.AreaFiscalizadora[ id=" + id + " ]";
+        return "com.ub.st.entities.negocio.Contratista[ id=" + id + " ]";
     }
 
     @Override
