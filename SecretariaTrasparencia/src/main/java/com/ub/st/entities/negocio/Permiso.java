@@ -20,7 +20,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- *
+ * Entidad de permisos
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Entity

@@ -180,6 +180,24 @@ public class UtilsService {
         res.setMessage(message);
         res.setDevMessage(devMessage);
     }
+    
+    /**
+     * asigna a response el estatus OK mas los mensajes proporcionados, ademas
+     * de poner en metadata el objeto data proporsionado
+     *
+     * @param res objeto response
+     * @param data objeto de datos de negocio
+     * @param metaData objeto de datos de administracion
+     * @param message mensaje para el usuario final
+     * @param devMessage mensaje para el desarrollador
+     */
+    public static final void setOkResponse(Response res, Object data, Object metaData, String message, String devMessage) {
+        res.setStatus(Status.OK);
+        res.setData(data);
+        res.setMetaData(metaData);
+        res.setMessage(message);
+        res.setDevMessage(devMessage);
+    }
 
     /**
      * asignar a response el estatus OK, el metadata y un mensaje para el

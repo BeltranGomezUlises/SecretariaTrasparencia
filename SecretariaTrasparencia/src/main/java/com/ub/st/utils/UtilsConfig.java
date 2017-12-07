@@ -14,7 +14,7 @@ import com.ub.st.entities.negocio.ConfigMail;
 public final class UtilsConfig {       
 
     static int getSecondsSessionJwtExp() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 120000;
     }
 
     static ConfigMail getResetPasswordConfigMail() {

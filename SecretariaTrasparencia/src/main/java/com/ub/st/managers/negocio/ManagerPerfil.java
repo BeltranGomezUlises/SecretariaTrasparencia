@@ -24,4 +24,5 @@ public class ManagerPerfil extends ManagerSQL<Perfil, Integer> {
         return "perfiles";
     }
     
+    
 }

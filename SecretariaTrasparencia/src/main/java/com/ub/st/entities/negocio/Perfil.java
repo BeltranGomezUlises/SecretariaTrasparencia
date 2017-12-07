@@ -10,6 +10,7 @@ import com.ub.st.entities.commons.EntitySQL;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,10 +27,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- *
+ * Entidad de perfiles
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Entity
+@Cacheable(false)
 @Table(name = "perfil")
 public class Perfil extends EntitySQL<Integer> implements Serializable {
 
@@ -79,8 +81,7 @@ public class Perfil extends EntitySQL<Integer> implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    @JsonIgnore
+    
     public List<Permiso> getPermisoList() {
         return permisoList;
     }
