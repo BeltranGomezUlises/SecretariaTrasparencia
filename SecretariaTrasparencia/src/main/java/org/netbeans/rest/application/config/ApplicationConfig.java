@@ -44,7 +44,6 @@ public class ApplicationConfig extends Application {
         resources.add(com.ub.st.services.negocio.EntesFiscalizadores.class);
         resources.add(com.ub.st.services.negocio.EntesFiscalizados.class);
         resources.add(com.ub.st.services.negocio.EntidadesCoordinadas.class);
-        resources.add(com.ub.st.services.negocio.Graficas.class);
         resources.add(com.ub.st.services.negocio.Obervaciones.class);
         resources.add(com.ub.st.services.negocio.OrganismosDescentralizados.class);
         resources.add(com.ub.st.services.negocio.OrganismosDesconcentrados.class);

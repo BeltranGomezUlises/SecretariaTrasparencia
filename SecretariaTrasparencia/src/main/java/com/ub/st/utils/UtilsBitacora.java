@@ -17,14 +17,8 @@
 package com.ub.st.utils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.ub.st.entities.commons.EntityMongo;
 import java.util.Date;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
-import org.mongojack.DBQuery;
-import org.mongojack.JacksonDBCollection;
 
 /**
  *
@@ -104,7 +98,7 @@ public class UtilsBitacora {
 //        return coll.find(DBQuery.lessThanEquals("fecha", fechaFinal)).toArray();
 //    }
 
-    public static class ModeloBitacora extends EntityMongo<String> {
+    public static class ModeloBitacora {//extends EntityMongo<String> {
 
         @JsonIgnore
         private Long usuarioId;
@@ -180,15 +174,15 @@ public class UtilsBitacora {
             this.usuarioId = usuarioId;
         }
 
-        @Override
-        public String getId() {
-            return id;
-        }
-
-        @Override
-        public void setId(String id) {
-            this.id = id;
-        }
+//        //@Override
+//        public String getId() {
+//            return id;
+//        }
+//
+//        //@Override
+//        public void setId(String id) {
+//            this.id = id;
+//        }
 
     }
 

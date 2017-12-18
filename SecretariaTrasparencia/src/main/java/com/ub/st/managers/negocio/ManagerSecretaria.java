@@ -22,6 +22,6 @@ public class ManagerSecretaria extends ManagerSQL<Secretaria, Integer>{
     @Override
     public String nombreColeccionParaRegistros() throws UnsupportedOperationException {
         return "secretarias";
-    }
+    }        
     
 }
