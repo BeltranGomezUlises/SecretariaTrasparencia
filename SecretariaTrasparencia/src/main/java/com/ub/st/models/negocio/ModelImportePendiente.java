@@ -12,12 +12,39 @@ package com.ub.st.models.negocio;
 public class ModelImportePendiente {
 
     private double importePendiente;
+    private double importeObservado;
+    private double importeRecuperado;
+    private double importeAclarado;
 
     public ModelImportePendiente() {
     }
 
     public ModelImportePendiente(double importePendiente) {
         this.importePendiente = importePendiente;
+    }
+
+    public double getImporteObservado() {
+        return importeObservado;
+    }
+
+    public void setImporteObservado(double importeObservado) {
+        this.importeObservado = importeObservado;
+    }
+
+    public double getImporteRecuperado() {
+        return importeRecuperado;
+    }
+
+    public void setImporteRecuperado(double importeRecuperado) {
+        this.importeRecuperado = importeRecuperado;
+    }
+
+    public double getImporteAclarado() {
+        return importeAclarado;
+    }
+
+    public void setImporteAclarado(double importeAclarado) {
+        this.importeAclarado = importeAclarado;
     }
 
     public double getImportePendiente() {

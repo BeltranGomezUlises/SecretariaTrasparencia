@@ -76,6 +76,8 @@ public class Seguimiento extends EntitySQL<Integer> implements Serializable {
     @NotNull
     @Column(name = "importe_recuperado")
     private double importeRecuperado;
+    @Column(name = "numero_oficio")
+    private String numeroOficio;
 
     public Seguimiento() {
     }
@@ -158,6 +160,30 @@ public class Seguimiento extends EntitySQL<Integer> implements Serializable {
         this.observacion = observacion;
     }
 
+    public double getImporteAclarado() {
+        return importeAclarado;
+    }
+
+    public void setImporteAclarado(double importeAclarado) {
+        this.importeAclarado = importeAclarado;
+    }
+
+    public double getImporteRecuperado() {
+        return importeRecuperado;
+    }
+
+    public void setImporteRecuperado(double importeRecuperado) {
+        this.importeRecuperado = importeRecuperado;
+    }
+
+    public String getNumeroOficio() {
+        return numeroOficio;
+    }
+
+    public void setNumeroOficio(String numeroOficio) {
+        this.numeroOficio = numeroOficio;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -186,22 +212,6 @@ public class Seguimiento extends EntitySQL<Integer> implements Serializable {
     @Override
     public Integer obtenIdEntidad() {
         return id;
-    }
-
-    public double getImporteAclarado() {
-        return importeAclarado;
-    }
-
-    public void setImporteAclarado(double importeAclarado) {
-        this.importeAclarado = importeAclarado;
-    }
-
-    public double getImporteRecuperado() {
-        return importeRecuperado;
-    }
-
-    public void setImporteRecuperado(double importeRecuperado) {
-        this.importeRecuperado = importeRecuperado;
     }
 
 }

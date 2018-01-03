@@ -7,47 +7,43 @@ package com.ub.st.services.negocio;
 
 import com.ub.st.entities.negocio.EnteFiscalizador;
 import com.ub.st.managers.negocio.ManagerEnteFiscalizador;
+import com.ub.st.models.negocio.ModelImportePendiente;
 import com.ub.st.services.commons.ServiceFacade;
+import com.ub.st.utils.UtilsService;
+import com.ub.st.utils.exceptions.TokenExpiradoException;
+import com.ub.st.utils.exceptions.TokenInvalidoException;
 import com.ub.st.utils.responses.Response;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
+import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
 
 /**
  * servicios lcrud para entes fiscalizadores
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Path("/entesFiscalizadores")
-public class EntesFiscalizadores extends ServiceFacade<ManagerEnteFiscalizador, EnteFiscalizador, Integer>{
-    
+public class EntesFiscalizadores extends ServiceFacade<ManagerEnteFiscalizador, EnteFiscalizador, Integer> {
+
     public EntesFiscalizadores() {
         super(ManagerEnteFiscalizador.class);
     }
 
-    @Override
-    public Response<EnteFiscalizador> eliminar(HttpServletRequest request, String token, EnteFiscalizador t) {
-        return super.eliminar(request, token, t); //To change body of generated methods, choose Tools | Templates.
+    @GET
+    @Path("/importes")
+    public Response<Map<Integer, ModelImportePendiente>> importesPendientesPorEnteFiscalizador(@HeaderParam("Authorization") final String token) {
+        Response<Map<Integer, ModelImportePendiente>> res = new Response<>();
+        try {
+            ManagerEnteFiscalizador managerEnteFiscalizador = new ManagerEnteFiscalizador();
+            managerEnteFiscalizador.setToken(token);
+            UtilsService.setOkResponse(res, managerEnteFiscalizador.importesPendientesPorEnteFiscalizador(), "Importes por ente finscalizar");
+        } catch (TokenExpiradoException | TokenInvalidoException e) {
+            UtilsService.setInvalidTokenResponse(res);
+        } catch (Exception e) {
+            UtilsService.setErrorResponse(res, e);
+        }
+        return res;
     }
 
-    @Override
-    public Response<EnteFiscalizador> modificar(HttpServletRequest request, String token, EnteFiscalizador t) {
-        return super.modificar(request, token, t); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Response<EnteFiscalizador> alta(HttpServletRequest request, String token, EnteFiscalizador t) {
-        return super.alta(request, token, t); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Response<EnteFiscalizador> detalle(HttpServletRequest request, String token, Integer id) {
-        return super.detalle(request, token, id); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Response<List<EnteFiscalizador>> listar(HttpServletRequest request, String token) {
-        return super.listar(request, token); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
 }

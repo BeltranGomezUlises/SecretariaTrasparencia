@@ -38,7 +38,7 @@ public class Auditorias extends ServiceFacade<ManagerAuditoria, Auditoria, Integ
         try {
             ManagerAuditoria managerAuditoria = new ManagerAuditoria();
             managerAuditoria.setToken(token);  
-            r.setData(new ModelImportePendiente(managerAuditoria.importePendienteAuditoria(id)));            
+            r.setData(managerAuditoria.importePendienteAuditoria(id));            
         } catch (TokenExpiradoException | TokenInvalidoException e) {
             setInvalidTokenResponse(r);
         } catch (Exception ex) {

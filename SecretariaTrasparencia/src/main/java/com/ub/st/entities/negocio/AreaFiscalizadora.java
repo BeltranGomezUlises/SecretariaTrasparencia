@@ -45,7 +45,7 @@ public class AreaFiscalizadora extends EntitySQL<Integer> implements Serializabl
     @ManyToMany(mappedBy = "areaFiscalizadoraList", fetch = FetchType.EAGER)
     private List<Auditoria> auditoriaList;
     @JoinColumn(name = "ente_fiscalizador", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private EnteFiscalizador enteFiscalizador;
 
     public AreaFiscalizadora() {

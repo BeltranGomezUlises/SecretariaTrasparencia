@@ -38,6 +38,7 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.ub.st.services.commons.ServiceFacade.class);
         resources.add(com.ub.st.services.generales.Accesos.class);
+        resources.add(com.ub.st.services.generales.Carga.class);
         resources.add(com.ub.st.services.negocio.Auditorias.class);
         resources.add(com.ub.st.services.negocio.Contratistas.class);
         resources.add(com.ub.st.services.negocio.CoordinacionesGenerales.class);

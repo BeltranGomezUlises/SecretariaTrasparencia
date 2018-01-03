@@ -50,6 +50,10 @@ public class EnteFiscalizado extends EntitySQL<Integer> implements Serializable 
         this.id = id;
     }
 
+    public EnteFiscalizado(String nombre) {
+        this.nombre = nombre;
+    }
+
     public EnteFiscalizado(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
@@ -106,5 +110,5 @@ public class EnteFiscalizado extends EntitySQL<Integer> implements Serializable 
     public Integer obtenIdEntidad() {
         return id;
     }
-    
+
 }
