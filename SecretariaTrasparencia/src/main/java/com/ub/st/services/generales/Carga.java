@@ -12,13 +12,17 @@ import com.ub.st.daos.negocio.DaoObervacion;
 import com.ub.st.entities.negocio.Auditoria;
 import com.ub.st.entities.negocio.EnteFiscalizado;
 import com.ub.st.models.generales.Observacion;
+import com.ub.st.utils.UtilsService;
 import com.ub.st.utils.responses.Response;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -38,29 +42,29 @@ public class Carga {
     @Path("/observaciones")
     public Response<String> carga (List<Observacion> observaciones){
         Response r = new Response();                
-        try {                                    
-            
+        try {                                                
             final DaoAuditoria daoAuditoria = new DaoAuditoria();
             final DaoEnteFiscalizado daoEnteFiscalizado = new DaoEnteFiscalizado();
             final DaoAreaFiscalizadora daoAreaFiscalizadora = new DaoAreaFiscalizadora();
             final DaoObervacion daoObervacion = new DaoObervacion();
             
             Map<String, List<Observacion>> map = observaciones.stream().collect(Collectors.groupingBy(Observacion::getAuditoria));
-                       
-            for (Map.Entry<String, List<Observacion>> entry : map.entrySet()) {                
+            Set<Observacion> auditorias = observaciones.stream().collect(toSet());
+            
+            for (Observacion ob: auditorias) {                
                 Auditoria au = new Auditoria();
-                au.setAñoRealiza( entry.getValue().get(0).getAño());
-                au.setAñoRevisa( entry.getValue().get(0).getAñoRevisa());
-                au.setNombre(entry.getKey()); 
+                au.setAñoRealiza( ob.getAño());
+                au.setAñoRevisa( ob.getAñoRevisa());
+                au.setNombre(ob.getAuditoria()); 
                 au.setSituacionActual("carga desde excel");
                 
                 //existe el ente, si no crealo
                 EnteFiscalizado ente;
                 try {
-                    String enteFiscalizado = entry.getValue().get(0).getEnteFizcalizado();
+                    String enteFiscalizado = ob.getEnteFizcalizado();
                     ente = daoEnteFiscalizado.stream().where( e -> e.getNombre().equals(enteFiscalizado)).findFirst().get();
                 } catch (Exception e) {
-                    ente = new EnteFiscalizado(entry.getValue().get(0).getEnteFizcalizado());
+                    ente = new EnteFiscalizado(ob.getEnteFizcalizado());
                     try {
                         daoEnteFiscalizado.persist(ente);
                     } catch (Exception ex) {
@@ -78,8 +82,8 @@ public class Carga {
                 try {
                     //guardar la auditoria
                     daoAuditoria.persist(au);
-                    
-                    for (Observacion observacion : entry.getValue()) {
+                    List<Observacion> observacionesDeAuditoria = observaciones.stream().filter( o -> o.equals(ob)).collect(toList());                    
+                    for (Observacion observacion : observacionesDeAuditoria) {
                         com.ub.st.entities.negocio.Observacion obser = new com.ub.st.entities.negocio.Observacion();
                         obser.setAuditoria(au);
                         obser.setNumeroObservacion(String.valueOf(observacion.getNumeroObservacion()));
@@ -92,18 +96,16 @@ public class Carga {
                         obser.setPendiente("");
                             
                         daoObervacion.persist(obser);
-                    }                   
-                    
+                    }                                       
                 } catch (Exception ex) {
                     Logger.getLogger(Carga.class.getName()).log(Level.SEVERE, null, ex);
-                }                                                                
-            }
-                            
+                }                                                                                
+            }                            
         } catch (Exception e) {
-            
+            Logger.getLogger(Carga.class.getName()).log(Level.SEVERE, null, e);
+            UtilsService.setErrorResponse(r, e);
         }        
         return r;        
-    }
-    
+    }    
     
 }

@@ -5,6 +5,8 @@
  */
 package com.ub.st.models.generales;
 
+import java.util.Objects;
+
 /**
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
@@ -117,4 +119,34 @@ public class Observacion {
         this.descripcion = descripcion;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + Objects.hashCode(this.auditoria);
+        hash = 47 * hash + Objects.hashCode(this.enteFizcalizado);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Observacion other = (Observacion) obj;
+        if (!Objects.equals(this.auditoria, other.auditoria)) {
+            return false;
+        }
+        if (!Objects.equals(this.enteFizcalizado, other.enteFizcalizado)) {
+            return false;
+        }
+        return true;
+    }
+
+    
 }
