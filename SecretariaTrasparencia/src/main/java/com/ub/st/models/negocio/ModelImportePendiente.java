@@ -6,11 +6,13 @@
 package com.ub.st.models.negocio;
 
 /**
- *
+ * modelo con los importes calculados de las auditorias segun un ente
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 public class ModelImportePendiente {
 
+    private int enteId;
+    private String nombreEnte;
     private double importePendiente;
     private double importeObservado;
     private double importeRecuperado;
@@ -19,8 +21,8 @@ public class ModelImportePendiente {
     public ModelImportePendiente() {
     }
 
-    public ModelImportePendiente(double importePendiente) {
-        this.importePendiente = importePendiente;
+    public ModelImportePendiente(int enteId) {
+        this.enteId = enteId;
     }
 
     public double getImporteObservado() {
@@ -53,6 +55,22 @@ public class ModelImportePendiente {
 
     public void setImportePendiente(double importePendiente) {
         this.importePendiente = importePendiente;
+    }
+
+    public int getEnteId() {
+        return enteId;
+    }
+
+    public void setEnteId(int enteId) {
+        this.enteId = enteId;
+    }
+
+    public String getNombreEnte() {
+        return nombreEnte;
+    }
+
+    public void setNombreEnte(String nombreEnte) {
+        this.nombreEnte = nombreEnte;
     }
 
     @Override

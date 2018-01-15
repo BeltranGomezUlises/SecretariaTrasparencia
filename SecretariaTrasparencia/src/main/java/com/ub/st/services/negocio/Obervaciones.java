@@ -33,5 +33,5 @@ public class Obervaciones  extends ServiceFacade<ManagerObervacion, Observacion,
         return managerObervacion.stream().where( o -> o.getAuditoria().getId() == id).collect(toList());
     }
     
-    
+        
 }
