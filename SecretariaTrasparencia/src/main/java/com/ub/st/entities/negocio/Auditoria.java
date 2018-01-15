@@ -76,12 +76,12 @@ public class Auditoria extends EntitySQL<Integer> implements Serializable {
     @JoinTable(name = "auditorias_entes_filcalizados", joinColumns = {
         @JoinColumn(name = "auditoria", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "ente_fiscalizado", referencedColumnName = "id")})
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<EnteFiscalizado> enteFiscalizadoList;
     @JoinTable(name = "auditorias_areas_fiscalizadoras", joinColumns = {
         @JoinColumn(name = "auditoria", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "area_fiscalizadora", referencedColumnName = "id")})
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<AreaFiscalizadora> areaFiscalizadoraList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "auditoria", fetch = FetchType.EAGER)
     private List<Observacion> observacionList;

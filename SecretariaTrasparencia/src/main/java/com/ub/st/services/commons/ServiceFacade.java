@@ -199,6 +199,7 @@ public class ServiceFacade<M extends ManagerFacade<T,K>, T extends IEntity<K>, K
         try {
             ManagerFacade<T,K> manager = clazz.newInstance();
             manager.setToken(token);            
+            manager.delete(t.obtenIdEntidad());
             setOkResponse(response, t.obtenIdEntidad(), "Entidad eliminada");
             //<editor-fold defaultstate="collapsed" desc="BITACORIZAR">
 //            try {

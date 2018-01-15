@@ -8,6 +8,7 @@ package com.ub.st.entities.negocio;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ub.st.entities.commons.EntitySQL;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Cacheable;
@@ -22,6 +23,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -99,8 +102,13 @@ public class Observacion extends EntitySQL<Integer> implements Serializable {
     @JoinColumn(name = "tipo_observacion", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
     private TipoObservacion tipoObservacion;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "fecha_registro")
+    @Temporal(TemporalType.DATE)
+    private Date fechaRegistro;
 
-    public Observacion() {
+    public Observacion() {        
     }
 
     public Observacion(Integer id) {
@@ -221,6 +229,35 @@ public class Observacion extends EntitySQL<Integer> implements Serializable {
     }
 
     @Override
+    public Integer obtenIdEntidad() {
+        return id;
+    }
+
+    public double getImporteObservado() {
+        return importeObservado;
+    }
+
+    public void setImporteObservado(double importeObservado) {
+        this.importeObservado = importeObservado;
+    }
+
+    public TipoObservacion getTipoObservacion() {
+        return tipoObservacion;
+    }
+
+    public void setTipoObservacion(TipoObservacion tipoObservacion) {
+        this.tipoObservacion = tipoObservacion;
+    }
+
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    @Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
@@ -243,27 +280,6 @@ public class Observacion extends EntitySQL<Integer> implements Serializable {
     @Override
     public String toString() {
         return "com.ub.st.entities.negocio.Observacion[ id=" + id + " ]";
-    }
-
-    @Override
-    public Integer obtenIdEntidad() {
-        return id;
-    }
-
-    public double getImporteObservado() {
-        return importeObservado;
-    }
-
-    public void setImporteObservado(double importeObservado) {
-        this.importeObservado = importeObservado;
-    }
-
-    public TipoObservacion getTipoObservacion() {
-        return tipoObservacion;
-    }
-
-    public void setTipoObservacion(TipoObservacion tipoObservacion) {
-        this.tipoObservacion = tipoObservacion;
     }
 
 }
