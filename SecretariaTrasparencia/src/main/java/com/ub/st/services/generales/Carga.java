@@ -53,8 +53,8 @@ public class Carga {
             
             for (Observacion ob: auditorias) {                
                 Auditoria au = new Auditoria();
-                au.setAñoRealiza( ob.getAño());
-                au.setAñoRevisa( ob.getAñoRevisa());
+                au.setAnioRealiza( ob.getAnio());
+                au.setAnioRevisa( ob.getAnioRevisa());
                 au.setNombre(ob.getAuditoria()); 
                 au.setSituacionActual("carga desde excel");
                 

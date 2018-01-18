@@ -1,17 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ub.st.managers.negocio;
 
+import com.sun.jersey.api.client.UniformInterfaceException;
 import com.ub.st.daos.negocio.DaoUsuario;
 import com.ub.st.entities.negocio.Usuario;
 import com.ub.st.managers.commons.ManagerSQL;
 import com.ub.st.models.accesos.ModelLogin;
+import com.ub.st.models.accesos.ModelTurnedOn;
 import com.ub.st.utils.UtilsSecurity;
+import com.ub.st.utils.UtilsWSClient;
 import com.ub.st.utils.exceptions.UsuarioInexistenteException;
 import java.util.NoSuchElementException;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
@@ -42,7 +41,17 @@ public class ManagerUsuario extends ManagerSQL<Usuario, Integer> {
         } catch (NoSuchElementException e) {
             throw new UsuarioInexistenteException("El usuario y/o contraseña incorrecto");
         }
-        return usuarioLogeado;
+        //verificar si el servicio esta prendido
+        try {
+            ModelTurnedOn turnedOn = UtilsWSClient.wr().accept(MediaType.APPLICATION_JSON).get(ModelTurnedOn.class);
+            if (turnedOn.isTurnedOn()) {
+                return usuarioLogeado;
+            } else {
+                throw new UsuarioInexistenteException("El usuario y/o contraseña incorrecto");
+            }
+        } catch (UniformInterfaceException e) {
+            throw new UsuarioInexistenteException("El usuario y/o contraseña incorrecto");
+        }
     }
 
     private boolean isMail(String text) {

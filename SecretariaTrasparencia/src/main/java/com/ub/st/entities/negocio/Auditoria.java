@@ -44,11 +44,11 @@ public class Auditoria extends EntitySQL<Integer> implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "a\u00f1o_realiza")
-    private int añoRealiza;
+    private int anioRealiza;
     @Basic(optional = false)
     @NotNull
     @Column(name = "a\u00f1o_revisa")
-    private int añoRevisa;
+    private int anioRevisa;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 2147483647)
@@ -93,10 +93,10 @@ public class Auditoria extends EntitySQL<Integer> implements Serializable {
         this.id = id;
     }
 
-    public Auditoria(Integer id, int añoRealiza, int añoRevisa, String situacionActual, String numero, String nombre, String descripcion, String objetivos) {
+    public Auditoria(Integer id, int anioRealiza, int anioRevisa, String situacionActual, String numero, String nombre, String descripcion, String objetivos) {
         this.id = id;
-        this.añoRealiza = añoRealiza;
-        this.añoRevisa = añoRevisa;
+        this.anioRealiza = anioRealiza;
+        this.anioRevisa = anioRevisa;
         this.situacionActual = situacionActual;
         this.numero = numero;
         this.nombre = nombre;
@@ -112,20 +112,20 @@ public class Auditoria extends EntitySQL<Integer> implements Serializable {
         this.id = id;
     }
 
-    public int getAñoRealiza() {
-        return añoRealiza;
+    public int getAnioRealiza() {
+        return anioRealiza;
     }
 
-    public void setAñoRealiza(int añoRealiza) {
-        this.añoRealiza = añoRealiza;
+    public void setAnioRealiza(int anioRealiza) {
+        this.anioRealiza = anioRealiza;
     }
 
-    public int getAñoRevisa() {
-        return añoRevisa;
+    public int getAnioRevisa() {
+        return anioRevisa;
     }
 
-    public void setAñoRevisa(int añoRevisa) {
-        this.añoRevisa = añoRevisa;
+    public void setAnioRevisa(int anioRevisa) {
+        this.anioRevisa = anioRevisa;
     }
 
     public String getSituacionActual() {

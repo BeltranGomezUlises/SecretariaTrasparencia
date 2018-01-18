@@ -13,8 +13,8 @@ import java.util.Objects;
  */
 public class Observacion {
 
-    private int año;
-    private int añoRevisa;
+    private int anio;
+    private int anioRevisa;
     private String auditoria;
     private int numeroObservacion;
     private float importe;
@@ -27,9 +27,9 @@ public class Observacion {
     public Observacion() {
     }
 
-    public Observacion(int año, int añoRevisa, int numeroObservacion, float importe, boolean situacionCorrectiva, String situacionCorrectivaDes, boolean situacionPreventiva, String enteFizcalizado, String descripcion) {
-        this.año = año;
-        this.añoRevisa = añoRevisa;
+    public Observacion(int anio, int anioRevisa, int numeroObservacion, float importe, boolean situacionCorrectiva, String situacionCorrectivaDes, boolean situacionPreventiva, String enteFizcalizado, String descripcion) {
+        this.anio = anio;
+        this.anioRevisa = anioRevisa;
         this.numeroObservacion = numeroObservacion;
         this.importe = importe;
         this.situacionCorrectiva = situacionCorrectiva;
@@ -47,20 +47,20 @@ public class Observacion {
         this.auditoria = auditoria;
     }
 
-    public int getAño() {
-        return año;
+    public int getAnio() {
+        return anio;
     }
 
-    public void setAño(int año) {
-        this.año = año;
+    public void setAnio(int anio) {
+        this.anio = anio;
     }
 
-    public int getAñoRevisa() {
-        return añoRevisa;
+    public int getAnioRevisa() {
+        return anioRevisa;
     }
 
-    public void setAñoRevisa(int añoRevisa) {
-        this.añoRevisa = añoRevisa;
+    public void setAnioRevisa(int anioRevisa) {
+        this.anioRevisa = anioRevisa;
     }
 
     public int getNumeroObservacion() {
