@@ -109,7 +109,7 @@ public class ManagerEnteFiscalizador extends ManagerSQL<EnteFiscalizador, Intege
                     modelEstadoObservaciones.addNuevas((int) observaciones.stream().filter(o -> o.getFechaRegistro().getYear() == añoActual).count());
                     modelEstadoObservaciones.addVigentes((int) observaciones.stream().filter(o -> o.getFechaRegistro().getYear() != añoActual).count());
                     modelEstadoObservaciones.addTotales(observaciones.size());
-                    //TODO... agregar las observaciones solventadas
+                    modelEstadoObservaciones.addSolventadas((int) observaciones.stream().filter( o -> o.getIpra() == true && o.getStatusIpra() == 1 && o.getRecomendacionCorrectiva() == true && o.getRecomendacionPreventiva() == true).count());                    
                     modelEstadoObservaciones.addSolventadas(0);
                 }
             }

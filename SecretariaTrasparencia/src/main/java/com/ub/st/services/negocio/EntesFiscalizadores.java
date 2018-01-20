@@ -16,7 +16,6 @@ import com.ub.st.utils.exceptions.TokenExpiradoException;
 import com.ub.st.utils.exceptions.TokenInvalidoException;
 import com.ub.st.utils.responses.Response;
 import java.util.List;
-import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;

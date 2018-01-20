@@ -9,8 +9,10 @@ import com.ub.st.daos.negocio.DaoAreaFiscalizadora;
 import com.ub.st.daos.negocio.DaoAuditoria;
 import com.ub.st.daos.negocio.DaoEnteFiscalizado;
 import com.ub.st.daos.negocio.DaoObervacion;
+import com.ub.st.daos.negocio.DaoSeguimiento;
 import com.ub.st.entities.negocio.Auditoria;
 import com.ub.st.entities.negocio.EnteFiscalizado;
+import com.ub.st.entities.negocio.Seguimiento;
 import com.ub.st.models.generales.Observacion;
 import com.ub.st.utils.UtilsService;
 import com.ub.st.utils.responses.Response;
@@ -37,75 +39,102 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 @Path("/carga")
 public class Carga {
-    
+
     @POST
     @Path("/observaciones")
-    public Response<String> carga (List<Observacion> observaciones){
-        Response r = new Response();                
-        try {                                                
+    public Response<String> carga(List<Observacion> observaciones) {
+        Response r = new Response();
+        try {
             final DaoAuditoria daoAuditoria = new DaoAuditoria();
             final DaoEnteFiscalizado daoEnteFiscalizado = new DaoEnteFiscalizado();
             final DaoAreaFiscalizadora daoAreaFiscalizadora = new DaoAreaFiscalizadora();
             final DaoObervacion daoObervacion = new DaoObervacion();
+            final DaoSeguimiento daoSeguimiento = new DaoSeguimiento();
             
-            Map<String, List<Observacion>> map = observaciones.stream().collect(Collectors.groupingBy(Observacion::getAuditoria));
+            Map<String, Map<String, List<Observacion>>> map = observaciones.stream().collect(Collectors.groupingBy(Observacion::getAuditoria, Collectors.groupingBy(Observacion::getEnteFizcalizado)));
             Set<Observacion> auditorias = observaciones.stream().collect(toSet());
-            
-            for (Observacion ob: auditorias) {                
-                Auditoria au = new Auditoria();
-                au.setAnioRealiza( ob.getAnio());
-                au.setAnioRevisa( ob.getAnioRevisa());
-                au.setNombre(ob.getAuditoria()); 
-                au.setSituacionActual("carga desde excel");
-                
-                //existe el ente, si no crealo
-                EnteFiscalizado ente;
-                try {
-                    String enteFiscalizado = ob.getEnteFizcalizado();
-                    ente = daoEnteFiscalizado.stream().where( e -> e.getNombre().equals(enteFiscalizado)).findFirst().get();
-                } catch (Exception e) {
-                    ente = new EnteFiscalizado(ob.getEnteFizcalizado());
+
+            for (Map.Entry<String, Map<String, List<Observacion>>> auditoria : map.entrySet()) {
+                for (Map.Entry<String, List<Observacion>> auditoriaObservacion : auditoria.getValue().entrySet()) {
+
+                    Auditoria au = new Auditoria();
+                    au.setAnioRealiza(auditoriaObservacion.getValue().get(0).getAnio());
+                    au.setAnioRevisa(auditoriaObservacion.getValue().get(0).getAnioRevisa());
+                    au.setNombre(auditoria.getKey());
+                    au.setSituacionActual("carga desde excel");
+
+                    //existe el ente, si no crealo
+                    EnteFiscalizado ente;
                     try {
-                        daoEnteFiscalizado.persist(ente);
+                        String enteFiscalizado = auditoriaObservacion.getValue().get(0).getEnteFizcalizado();
+                        ente = daoEnteFiscalizado.stream().where(e -> e.getNombre().equals(enteFiscalizado)).findFirst().get();
+                    } catch (Exception e) {
+                        ente = new EnteFiscalizado(auditoriaObservacion.getValue().get(0).getEnteFizcalizado());
+                        try {
+                            daoEnteFiscalizado.persist(ente);
+                        } catch (Exception ex) {
+                            Logger.getLogger(Carga.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    au.setEnteFiscalizadoList(Arrays.asList(ente));
+
+                    //colocar el area fiscalizadora
+                    try {
+                        au.setAreaFiscalizadoraList(Arrays.asList(daoAreaFiscalizadora.stream().where( area -> area.getEnteFiscalizador().getId() == 8).findAny().get()));
                     } catch (Exception ex) {
                         Logger.getLogger(Carga.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }                                                
-                au.setEnteFiscalizadoList(Arrays.asList(ente));
-                
-                //colocar el area fiscalizadora
-                try {
-                    au.setAreaFiscalizadoraList(Arrays.asList(daoAreaFiscalizadora.findFirst()));
-                } catch (Exception ex) {
-                    Logger.getLogger(Carga.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                try {
-                    //guardar la auditoria
-                    daoAuditoria.persist(au);
-                    List<Observacion> observacionesDeAuditoria = observaciones.stream().filter( o -> o.equals(ob)).collect(toList());                    
-                    for (Observacion observacion : observacionesDeAuditoria) {
-                        com.ub.st.entities.negocio.Observacion obser = new com.ub.st.entities.negocio.Observacion();
-                        obser.setAuditoria(au);
-                        obser.setNumeroObservacion(String.valueOf(observacion.getNumeroObservacion()));
-                        obser.setImporteObservado(observacion.getImporte());
-                        obser.setRecomendacionCorrectiva(observacion.isSituacionCorrectiva());
-                        obser.setRecomendacionPreventiva(observacion.isSituacionPreventiva());
-                        obser.setDesRecomendacionCorrectiva(observacion.getSituacionCorrectivaDes());
-                        obser.setDescripcion(observacion.getDescripcion());
-                        obser.setDesRecomendacionPreventiva("");
-                        obser.setPendiente("");
+                    try {
+                        //guardar la auditoria
+                        daoAuditoria.persist(au);                        
+                        for (Observacion observacion : auditoriaObservacion.getValue()) {
+                            com.ub.st.entities.negocio.Observacion obser = new com.ub.st.entities.negocio.Observacion();
+                            obser.setAuditoria(au);
+                            obser.setNumeroObservacion(String.valueOf(observacion.getNumeroObservacion()));
+                            obser.setImporteObservado(observacion.getMontoObservado());
+                            obser.setRecomendacionCorrectiva(observacion.isSituacionCorrectiva());
+                            obser.setRecomendacionPreventiva(observacion.isSituacionPreventiva());
+                            obser.setDescripcion(observacion.getDescripcion());
+                            obser.setIpra(observacion.isIpra());
+                            obser.setPendiente("");
+                            if (observacion.isIpra()) {
+                                if (!observacion.getEstadoIpra().equals("PRESCRITO")) {
+                                    obser.setStatusIpra(1);
+                                }else{
+                                    obser.setStatusIpra(0);
+                                }
+                            }
+                            obser.setDesRecomendacionCorrectiva("");
+                            obser.setDesRecomendacionPreventiva("");         
                             
-                        daoObervacion.persist(obser);
-                    }                                       
-                } catch (Exception ex) {
-                    Logger.getLogger(Carga.class.getName()).log(Level.SEVERE, null, ex);
-                }                                                                                
-            }                            
+                            daoObervacion.persist(obser);
+                            
+                            if (observacion.getMontoAclarado() > 0f) {
+                                
+                                Seguimiento s = new Seguimiento();
+                                s.setObservacion(obser);                               
+                                s.setAntecedentes("");
+                                s.setDocuemntacionRecibida("");
+                                s.setDocumentacionAnexa("");
+                                s.setImporteAclarado(observacion.getMontoAclarado());
+                                s.setImporteRecuperado(0);
+                                s.setNumeroOficio("");
+                                s.setRecomendacionCorrectiva("");
+                                s.setRecomendacionPreventiva("");                                                                
+                                
+                                daoSeguimiento.persist(s);                                
+                            }                                                        
+                        }
+                    } catch (Exception ex) {
+                        Logger.getLogger(Carga.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
         } catch (Exception e) {
             Logger.getLogger(Carga.class.getName()).log(Level.SEVERE, null, e);
             UtilsService.setErrorResponse(r, e);
-        }        
-        return r;        
-    }    
-    
+        }
+        return r;
+    }
+
 }
