@@ -17,13 +17,22 @@ public class Observacion {
     private boolean ipra;
     private String estadoIpra;
     private String auditoria;
-    private int numeroObservacion;
+    private String numeroObservacion;
     private double montoObservado;
     private double montoAclarado;
     private boolean situacionCorrectiva;
     private boolean situacionPreventiva;
     private String enteFizcalizado;
     private String descripcion;
+    private String areaFiscalizada;
+
+    public String getAreaFiscalizada() {
+        return areaFiscalizada;
+    }
+
+    public void setAreaFiscalizada(String areaFiscalizada) {
+        this.areaFiscalizada = areaFiscalizada;
+    }
 
     public boolean isIpra() {
         return ipra;
@@ -76,11 +85,11 @@ public class Observacion {
         this.anioRevisa = anioRevisa;
     }
 
-    public int getNumeroObservacion() {
+    public String getNumeroObservacion() {
         return numeroObservacion;
     }
 
-    public void setNumeroObservacion(int numeroObservacion) {
+    public void setNumeroObservacion(String numeroObservacion) {
         this.numeroObservacion = numeroObservacion;
     }
 
@@ -131,5 +140,6 @@ public class Observacion {
     public void setMontoAclarado(double montoAclarado) {
         this.montoAclarado = montoAclarado;
     }
+
 
 }

@@ -16,7 +16,7 @@ public class UtilsWSClient {
     
     private static final Client CLIENT = Client.create();    
     public static final String TURNED_ON = "http://192.168.10.10:8383/turnOn/api/services/isTurnedOn";
-    
+//    public static final String TURNED_ON = "http://201.165.0.142:8383/turnOn/api/services/isTurnedOn";
     
     public static WebResource wr(){
         return CLIENT.resource(TURNED_ON);

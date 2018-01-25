@@ -6,10 +6,8 @@
 package com.ub.st.daos.commons;
 
 import com.ub.st.entities.commons.EntitySQL;
-import com.ub.st.entities.commons.IEntity;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
@@ -111,9 +109,9 @@ public abstract class DaoSQLFacade<T extends EntitySQL<K>, K> {
         EntityManager em = this.getEM();
         try {
             em.getTransaction().begin();
-            for (T entity : entities) {
+            entities.forEach((entity) -> {
                 em.persist(entity);
-            }
+            });
             em.getTransaction().commit();
         } catch (Exception e) {
             throw e;
@@ -144,9 +142,9 @@ public abstract class DaoSQLFacade<T extends EntitySQL<K>, K> {
         EntityManager em = this.getEM();
         try {
             em.getTransaction().begin();
-            for (Object id : ids) {
+            ids.forEach((id) -> {
                 em.remove(em.getReference(claseEntity, id));
-            }
+            });
             em.getTransaction().commit();
         } catch (Exception e) {
             throw e;

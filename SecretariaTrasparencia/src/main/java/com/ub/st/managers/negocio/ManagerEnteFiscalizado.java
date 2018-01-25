@@ -92,12 +92,11 @@ public class ManagerEnteFiscalizado extends ManagerSQL<EnteFiscalizado, Integer>
                 if (filtroFecha.getFechaInicio() != null) sObservaciones = sObservaciones.filter( o -> !o.getFechaRegistro().before(filtroFecha.getFechaInicio()));                    
                 if (filtroFecha.getFechaFin() != null) sObservaciones = sObservaciones.filter( o -> !o.getFechaRegistro().after(filtroFecha.getFechaFin()));                                        
                 List<Observacion> observaciones = sObservaciones.collect(toList());
-                
                 modelEstadoObservaciones.addNuevas((int) observaciones.stream().filter( o -> o.getFechaRegistro().getYear() == añoActual).count());
-                modelEstadoObservaciones.addVigentes((int) observaciones.stream().filter( o -> o.getFechaRegistro().getYear() != añoActual).count());
-                modelEstadoObservaciones.addTotales(observaciones.size());
+                modelEstadoObservaciones.addVigentes((int) observaciones.stream().filter( o -> o.getFechaRegistro().getYear() != añoActual).count());                
                 modelEstadoObservaciones.addSolventadas((int) observaciones.stream().filter( o -> o.getIpra() == true && o.getStatusIpra() == 1 && o.getRecomendacionCorrectiva() == true && o.getRecomendacionPreventiva() == true).count());                
             }                        
+            modelEstadoObservaciones.setTotales(modelEstadoObservaciones.getVigentes() + modelEstadoObservaciones.getNuevas() - modelEstadoObservaciones.getSolventadas());
             res.add(modelEstadoObservaciones);
         }
         return res;

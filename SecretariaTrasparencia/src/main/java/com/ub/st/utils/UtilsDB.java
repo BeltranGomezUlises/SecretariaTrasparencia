@@ -24,7 +24,6 @@ public class UtilsDB {
      */
     //</editor-fold>
     private static EntityManagerFactory eMFactory;    
-    private static JinqJPAStreamProvider streamProvider;
 
     /**
      * PERSISTENCE UNIT NAMES
