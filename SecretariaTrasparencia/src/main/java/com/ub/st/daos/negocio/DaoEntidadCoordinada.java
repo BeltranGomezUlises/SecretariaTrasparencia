@@ -14,9 +14,9 @@ import com.ub.st.utils.UtilsDB;
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 public class DaoEntidadCoordinada extends DaoSQLFacade<EntidadCoordinada, Integer> {
-    
+
     public DaoEntidadCoordinada() {
         super(UtilsDB.getEMFactoryDefault(), EntidadCoordinada.class);
     }
-    
+
 }

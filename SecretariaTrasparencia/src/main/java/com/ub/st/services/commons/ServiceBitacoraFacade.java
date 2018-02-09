@@ -34,17 +34,18 @@ import javax.ws.rs.PathParam;
 
 /**
  * clase de servicios para bitacoras de acciones
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  * @param <M> clase manejadora de entidades
  * @param <T> entidad a manejar por esta clase servicio
  * @param <K> tipo de dato de llave primaria de la entidad a menejar por esta clase servicio
  */
-public abstract class ServiceBitacoraFacade<M extends ManagerFacade<T,K>, T extends IEntity<K>, K> extends ServiceFacade<M,T,K> {
+public abstract class ServiceBitacoraFacade<M extends ManagerFacade<T, K>, T extends IEntity<K>, K> extends ServiceFacade<M, T, K> {
 
     public ServiceBitacoraFacade(Class<M> clazz) {
         super(clazz);
-    }      
-                       
+    }
+
     /**
      * obtener todo los registros de bitacoras de esta entidad
      *
@@ -56,36 +57,32 @@ public abstract class ServiceBitacoraFacade<M extends ManagerFacade<T,K>, T exte
     public Response<List<ModeloBitacora>> obtenerBitacoras(@HeaderParam("Authorization") String token) {
         Response res = new Response();
         try {
-            ManagerFacade<T,K> manager = clazz.newInstance();            
+            ManagerFacade<T, K> manager = clazz.newInstance();
             manager.setToken(token);
             res.setData(UtilsBitacora.bitacoras(manager.nombreColeccionParaRegistros()));
             res.setDevMessage("Bitácoras de esta entidad");
         } catch (TokenExpiradoException | TokenInvalidoException e) {
-            setInvalidTokenResponse(res);            
+            setInvalidTokenResponse(res);
         } catch (Exception ex) {
             setErrorResponse(res, ex);
-        } 
+        }
         return res;
     }
 
     /**
-     * obtener los registros de bitcoras de esta entidad dentro del rango de
-     * fechas proporsionado
+     * obtener los registros de bitcoras de esta entidad dentro del rango de fechas proporsionado
      *
      * @param token token de sesion
-     * @param fechaInicial los milisegundos que representan la fecha inicial de
-     * filtrado
-     * @param fechaFinal los milisegundos que representan la fecha final del
-     * filtrado
-     * @return en data, la lista de modelos de bitacora que estan dentro del
-     * rango de fechas propuesto
+     * @param fechaInicial los milisegundos que representan la fecha inicial de filtrado
+     * @param fechaFinal los milisegundos que representan la fecha final del filtrado
+     * @return en data, la lista de modelos de bitacora que estan dentro del rango de fechas propuesto
      */
     @GET
     @Path("/bitacoras/{fechaInicial}/{fechaFinal}")
     public Response obtenerBitacorasRangoFechas(@HeaderParam("Authorization") String token, @PathParam("fechaInicial") Date fechaInicial, @PathParam("fechaFinal") Date fechaFinal) {
         Response res = new Response();
         try {
-            ManagerFacade<T,K> manager = clazz.newInstance();            
+            ManagerFacade<T, K> manager = clazz.newInstance();
             manager.setToken(token);
             res.setData(UtilsBitacora.bitacorasEntre(manager.nombreColeccionParaRegistros(), fechaInicial, fechaFinal));
             res.setDevMessage("Bitácoras de esta entidad");
@@ -99,21 +96,18 @@ public abstract class ServiceBitacoraFacade<M extends ManagerFacade<T,K>, T exte
     }
 
     /**
-     * obtener los registros de bitcoras de esta entidad desde de la fecha
-     * proporsionada
+     * obtener los registros de bitcoras de esta entidad desde de la fecha proporsionada
      *
      * @param token token de sesion
-     * @param fechaInicial los milisegundos que representan la fecha inicial
-     * desde la cual obtener la bitacora
-     * @return en data, la lista de modelos de bitacora que estan a partir de la
-     * fecha proporsionada
+     * @param fechaInicial los milisegundos que representan la fecha inicial desde la cual obtener la bitacora
+     * @return en data, la lista de modelos de bitacora que estan a partir de la fecha proporsionada
      */
     @GET
     @Path("/bitacoras/desde/{fechaInicial}")
     public Response obtenerBitacorasDesdeFecha(@HeaderParam("Authorization") String token, @PathParam("fechaInicial") Date fechaInicial) {
         Response res = new Response();
         try {
-            ManagerFacade<T,K> manager = clazz.newInstance();            
+            ManagerFacade<T, K> manager = clazz.newInstance();
             manager.setToken(token);
             res.setData(UtilsBitacora.bitacorasDesde(manager.nombreColeccionParaRegistros(), fechaInicial));
             res.setDevMessage("Bitácoras de esta entidad");
@@ -126,21 +120,18 @@ public abstract class ServiceBitacoraFacade<M extends ManagerFacade<T,K>, T exte
     }
 
     /**
-     * obtener los registros de bitcoras de esta entidad hasta la fecha
-     * proporsionada
+     * obtener los registros de bitcoras de esta entidad hasta la fecha proporsionada
      *
      * @param token token de sesion
-     * @param fechaFinal los milisegundos que representan la fecha final hasta
-     * la cual obtener la bitacora
-     * @return en data, la lista de modelos de bitacora que estan hasta de la
-     * fecha proporsionada
+     * @param fechaFinal los milisegundos que representan la fecha final hasta la cual obtener la bitacora
+     * @return en data, la lista de modelos de bitacora que estan hasta de la fecha proporsionada
      */
     @GET
     @Path("/bitacoras/hasta/{fechaFinal}")
     public Response obtenerBitacorasHastaFecha(@HeaderParam("Authorization") String token, @PathParam("fechaFinal") Date fechaFinal) {
         Response res = new Response();
         try {
-            ManagerFacade<T,K> manager = clazz.newInstance();            
+            ManagerFacade<T, K> manager = clazz.newInstance();
             manager.setToken(token);
             res.setData(UtilsBitacora.bitacorasHasta(manager.nombreColeccionParaRegistros(), fechaFinal));
             res.setDevMessage("Bitácoras de esta entidad");
@@ -162,5 +153,5 @@ public abstract class ServiceBitacoraFacade<M extends ManagerFacade<T,K>, T exte
         String raiz = "com.ub.st.";
         return className.substring(raiz.length()) + "." + Thread.currentThread().getStackTrace()[2].getMethodName();
     }
-    
+
 }

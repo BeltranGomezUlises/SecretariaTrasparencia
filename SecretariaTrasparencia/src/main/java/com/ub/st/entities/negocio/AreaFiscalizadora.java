@@ -41,7 +41,7 @@ public class AreaFiscalizadora extends EntitySQL<Integer> implements Serializabl
     @NotNull
     @Size(min = 1, max = 2147483647)
     @Column(name = "nombre")
-    private String nombre;      
+    private String nombre;
     @ManyToMany(mappedBy = "areaFiscalizadoraList", fetch = FetchType.EAGER)
     private List<Auditoria> auditoriaList;
     @JoinColumn(name = "ente_fiscalizador", referencedColumnName = "id")
@@ -75,7 +75,7 @@ public class AreaFiscalizadora extends EntitySQL<Integer> implements Serializabl
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
     @JsonIgnore
     public List<Auditoria> getAuditoriaList() {
         return auditoriaList;
@@ -123,5 +123,5 @@ public class AreaFiscalizadora extends EntitySQL<Integer> implements Serializabl
     public Integer obtenIdEntidad() {
         return id;
     }
-    
+
 }

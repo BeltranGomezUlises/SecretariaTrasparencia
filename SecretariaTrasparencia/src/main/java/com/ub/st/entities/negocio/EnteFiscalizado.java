@@ -29,6 +29,8 @@ import javax.validation.constraints.Size;
 @Table(name = "ente_fiscalizado")
 public class EnteFiscalizado extends EntitySQL<Integer> implements Serializable {
 
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "enteAuditado")
+//    private List<Observacion> observacionList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -111,4 +113,11 @@ public class EnteFiscalizado extends EntitySQL<Integer> implements Serializable 
         return id;
     }
 
+//    public List<Observacion> getObservacionList() {
+//        return observacionList;
+//    }
+//
+//    public void setObservacionList(List<Observacion> observacionList) {
+//        this.observacionList = observacionList;
+//    }
 }

@@ -13,10 +13,10 @@ import com.ub.st.utils.UtilsDB;
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
-public class DaoContratista extends DaoSQLFacade<Contratista, Integer>{
-    
+public class DaoContratista extends DaoSQLFacade<Contratista, Integer> {
+
     public DaoContratista() {
         super(UtilsDB.getEMFactoryDefault(), Contratista.class);
     }
-    
+
 }

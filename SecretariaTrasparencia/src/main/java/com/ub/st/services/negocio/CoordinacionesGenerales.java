@@ -11,14 +11,15 @@ import com.ub.st.services.commons.ServiceFacade;
 import javax.ws.rs.Path;
 
 /**
- * Catálogo de coordinaciones generales
+ * Servicios LCRUD para catálogo de coordinaciones generales
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Path("/coordinacionesGenerales")
 public class CoordinacionesGenerales extends ServiceFacade<ManagerCoordinacionGeneral, CoordinacionGeneral, Integer> {
-    
+
     public CoordinacionesGenerales() {
         super(ManagerCoordinacionGeneral.class);
     }
-    
+
 }

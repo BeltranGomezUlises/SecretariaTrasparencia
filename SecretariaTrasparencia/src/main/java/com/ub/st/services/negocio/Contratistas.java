@@ -11,14 +11,15 @@ import com.ub.st.services.commons.ServiceFacade;
 import javax.ws.rs.Path;
 
 /**
+ * Servicios LCRUD de contratistas
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Path("/contratistas")
-public class Contratistas extends ServiceFacade<ManagerContratista, Contratista, Integer>{
-    
+public class Contratistas extends ServiceFacade<ManagerContratista, Contratista, Integer> {
+
     public Contratistas() {
         super(ManagerContratista.class);
     }
-    
+
 }

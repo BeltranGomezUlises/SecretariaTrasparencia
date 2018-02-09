@@ -18,9 +18,10 @@ package com.ub.st.entities.commons;
 
 /**
  * clase padre para entidades SQL
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  * @param <K> tipo de dato de la llave primaria de la entidad
  */
-public abstract class EntitySQL<K> extends IEntity<K>{
-        
+public abstract class EntitySQL<K> extends IEntity<K> {
+
 }

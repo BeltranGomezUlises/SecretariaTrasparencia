@@ -23,5 +23,5 @@ public class ManagerPermiso extends ManagerSQL<Permiso, String> {
     public String nombreColeccionParaRegistros() throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
     }
-    
+
 }

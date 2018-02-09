@@ -110,5 +110,5 @@ public class Contratista extends EntitySQL<Integer> implements Serializable {
     public Integer obtenIdEntidad() {
         return id;
     }
-    
+
 }

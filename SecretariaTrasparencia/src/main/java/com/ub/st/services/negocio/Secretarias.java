@@ -11,12 +11,13 @@ import com.ub.st.services.commons.ServiceFacade;
 import javax.ws.rs.Path;
 
 /**
- * servicios LCRUD para las secretarias
+ * Servicios LCRUD para catálogo de las secretarias
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Path("/secretarias")
-public class Secretarias extends ServiceFacade<ManagerSecretaria, Secretaria, Integer>{
-    
+public class Secretarias extends ServiceFacade<ManagerSecretaria, Secretaria, Integer> {
+
     public Secretarias() {
         super(ManagerSecretaria.class);
     }

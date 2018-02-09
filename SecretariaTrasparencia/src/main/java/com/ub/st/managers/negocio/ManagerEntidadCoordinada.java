@@ -21,7 +21,7 @@ public class ManagerEntidadCoordinada extends ManagerSQL<EntidadCoordinada, Inte
 
     @Override
     public String nombreColeccionParaRegistros() throws UnsupportedOperationException {
-        return  "entidadCoordinada";
+        return "entidadCoordinada";
     }
-    
+
 }

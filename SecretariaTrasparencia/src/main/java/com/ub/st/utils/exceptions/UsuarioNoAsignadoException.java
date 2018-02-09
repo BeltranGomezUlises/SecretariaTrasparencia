@@ -20,10 +20,10 @@ package com.ub.st.utils.exceptions;
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
-public class UsuarioNoAsignadoException extends Exception{
+public class UsuarioNoAsignadoException extends Exception {
 
     public UsuarioNoAsignadoException() {
         super("No asignó un usuario de token de sesion al manager");
     }
-            
+
 }

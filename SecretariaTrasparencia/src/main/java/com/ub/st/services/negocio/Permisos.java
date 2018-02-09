@@ -11,7 +11,7 @@ import com.ub.st.services.commons.ServiceFacade;
 import javax.ws.rs.Path;
 
 /**
- * servicios LCRUD para los permisos del sistema
+ * Servicios LCRUD para los permisos del sistema
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */

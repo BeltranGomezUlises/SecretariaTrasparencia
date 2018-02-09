@@ -7,6 +7,7 @@ package com.ub.st.models.negocio;
 
 /**
  * modelo con los importes calculados de las auditorias segun un ente
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 public class ModelImportePendiente {

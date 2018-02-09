@@ -11,14 +11,15 @@ import com.ub.st.services.commons.ServiceFacade;
 import javax.ws.rs.Path;
 
 /**
- * servicios LCRUd  para los usuarios del sistema
+ * Servicios LCRUD para catálogo de los usuarios del sistema
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Path("/usuarios")
 public class Usuarios extends ServiceFacade<ManagerUsuario, Usuario, Integer> {
-    
+
     public Usuarios() {
         super(ManagerUsuario.class);
     }
-     
+
 }

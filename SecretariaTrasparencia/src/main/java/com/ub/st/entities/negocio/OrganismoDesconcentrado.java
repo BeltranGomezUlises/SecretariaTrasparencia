@@ -19,6 +19,7 @@ import javax.validation.constraints.Size;
 
 /**
  * Entidad de organismos desconcentrados
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Entity
@@ -94,5 +95,5 @@ public class OrganismoDesconcentrado extends EntitySQL<Integer> implements Seria
     public Integer obtenIdEntidad() {
         return id;
     }
-    
+
 }

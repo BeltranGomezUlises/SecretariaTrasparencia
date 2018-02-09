@@ -141,5 +141,4 @@ public class Observacion {
         this.montoAclarado = montoAclarado;
     }
 
-
 }

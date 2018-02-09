@@ -21,6 +21,7 @@ import javax.validation.constraints.Size;
 
 /**
  * Entidad de permisos
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Entity
@@ -69,7 +70,7 @@ public class Permiso extends EntitySQL<String> implements Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
+
     @JsonIgnore
     public List<Perfil> getPerfilList() {
         return perfilList;
@@ -108,5 +109,5 @@ public class Permiso extends EntitySQL<String> implements Serializable {
     public String obtenIdEntidad() {
         return id;
     }
-    
+
 }

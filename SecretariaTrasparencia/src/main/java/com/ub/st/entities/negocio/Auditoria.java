@@ -96,7 +96,6 @@ public class Auditoria extends EntitySQL<Integer> implements Serializable {
     public Auditoria(Integer id, int anioRealiza, int anioRevisa, String situacionActual, String numero, String nombre, String descripcion, String objetivos) {
         this.id = id;
         this.anioRealiza = anioRealiza;
-        this.anioRevisa = anioRevisa;
         this.situacionActual = situacionActual;
         this.numero = numero;
         this.nombre = nombre;

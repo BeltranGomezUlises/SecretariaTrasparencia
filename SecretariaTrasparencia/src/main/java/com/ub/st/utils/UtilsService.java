@@ -40,20 +40,19 @@ public class UtilsService {
     public static final void setCauseMessage(Response response, Throwable e) {
         String anterior = response.getMeta().getDevMessage();
         if (anterior == null) {
-            response.setDevMessage("ERROR: "+ e.toString() + " CAUSE: " + e.getMessage());
+            response.setDevMessage("ERROR: " + e.toString() + " CAUSE: " + e.getMessage());
         } else {
             response.setDevMessage(response.getMeta().getDevMessage() + " CAUSE: " + e.getMessage());
         }
         if (e.getCause() != null) {
             setCauseMessage(response, e.getCause());
-        }else{
+        } else {
             response.setDevMessage(response.getMeta().getDevMessage() + " STACK: " + Arrays.toString(e.getStackTrace()));
         }
     }
 
     /**
-     * asigna a response el estatus y el mensaje de un token invalido, se
-     * utiliza cuando se lanzá una exception de tipo TokenInvalidoException
+     * asigna a response el estatus y el mensaje de un token invalido, se utiliza cuando se lanzá una exception de tipo TokenInvalidoException
      *
      * @param response res
      */
@@ -63,8 +62,7 @@ public class UtilsService {
     }
 
     /**
-     * asigna a response el status y el mensaje de un parametro invalido, se
-     * utiliza cuando se lanzá una exception de tipo ParametroInvalidoException
+     * asigna a response el status y el mensaje de un parametro invalido, se utiliza cuando se lanzá una exception de tipo ParametroInvalidoException
      *
      * @param response respuesta a asignar valores
      * @param e exception lanzada de tipo ParametroInvalidoException
@@ -76,8 +74,7 @@ public class UtilsService {
     }
 
     /**
-     * asigna a response el status y el mensaje de acceso denegado, se utiliza
-     * cuando se lanza una exception de tipo AccesoDenegado
+     * asigna a response el status y el mensaje de acceso denegado, se utiliza cuando se lanza una exception de tipo AccesoDenegado
      *
      * @param response respuesta a asignar los valores
      * @param ex exception de la cual obtener los mensajes
@@ -89,8 +86,7 @@ public class UtilsService {
     }
 
     /**
-     * asigna a response el status y el mensaje de acceso denegado, se utiliza
-     * cuando se lanza una exception de tipo AccessDenied
+     * asigna a response el status y el mensaje de acceso denegado, se utiliza cuando se lanza una exception de tipo AccessDenied
      *
      * @param response respuesta a asignar los valores
      * @param mensaje mensaje a asignar para el usuario
@@ -125,8 +121,7 @@ public class UtilsService {
     }
 
     /**
-     * asignar a response el estatus ERROR y el mensaje proporsionado para el
-     * usuario
+     * asignar a response el estatus ERROR y el mensaje proporsionado para el usuario
      *
      * @param res modelo response generico a asignar valores
      * @param err exception lanzada
@@ -166,8 +161,7 @@ public class UtilsService {
     }
 
     /**
-     * asigna a response el estatus OK mas los mensajes proporcionados, ademas
-     * de poner en metadata el objeto data proporsionado
+     * asigna a response el estatus OK mas los mensajes proporcionados, ademas de poner en metadata el objeto data proporsionado
      *
      * @param res
      * @param data
@@ -180,10 +174,9 @@ public class UtilsService {
         res.setMessage(message);
         res.setDevMessage(devMessage);
     }
-    
+
     /**
-     * asigna a response el estatus OK mas los mensajes proporcionados, ademas
-     * de poner en metadata el objeto data proporsionado
+     * asigna a response el estatus OK mas los mensajes proporcionados, ademas de poner en metadata el objeto data proporsionado
      *
      * @param res objeto response
      * @param data objeto de datos de negocio
@@ -200,8 +193,7 @@ public class UtilsService {
     }
 
     /**
-     * asignar a response el estatus OK, el metadata y un mensaje para el
-     * desarrollador
+     * asignar a response el estatus OK, el metadata y un mensaje para el desarrollador
      *
      * @param res
      * @param data
@@ -214,8 +206,7 @@ public class UtilsService {
     }
 
     /**
-     * asignar a response el estatus OK, el metadata y un mensaje para el
-     * desarrollador
+     * asignar a response el estatus OK, el metadata y un mensaje para el desarrollador
      *
      * @param res respuesta a asignar los valores
      * @param message mensaje para el usuario final
@@ -228,8 +219,7 @@ public class UtilsService {
     }
 
     /**
-     * asigna solo le estatus OK a response y le añade el mensaje para el
-     * desarrollador
+     * asigna solo le estatus OK a response y le añade el mensaje para el desarrollador
      *
      * @param res
      * @param devMessage
@@ -241,19 +231,19 @@ public class UtilsService {
 
     /**
      * asignar a response el estatus PARCIAL_ACCESS y el metadata los elementos a los que no se le pudo realizar la operacion
+     *
      * @param res response al cual asignar los valores
      * @param e excepcion lanzada por manager de tipo ElementosSinAccesoException
      */
-    public static final void setElementosSinAccesoResponse(Response res, ElementosSinAccesoException e){
+    public static final void setElementosSinAccesoResponse(Response res, ElementosSinAccesoException e) {
         res.setStatus(Status.PARCIAL_ACCESS);
         res.setMessage(e.getMessage());
         res.setDevMessage("no se tiene acceso a los elementos");
         res.setMetaData(e.getElementosSinAcceso());
     }
-    
+
     /**
-     * genera el enum correspondiente al sistema operativo del cual la cabecera
-     * UserAgent de la peticion indica
+     * genera el enum correspondiente al sistema operativo del cual la cabecera UserAgent de la peticion indica
      *
      * @param userAgent cadena con el texto de la cabecera User-Agent
      * @return enumarador del sistema operativo

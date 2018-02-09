@@ -20,7 +20,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
 /**
- * servicios lcrud para entes fiscalizados
+ * Servicios LCRUD para catálogo entes fiscalizados
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
@@ -53,7 +53,7 @@ public class EntesFiscalizados extends ServiceFacade<ManagerEnteFiscalizado, Ent
         }
         return res;
     }
-    
+
     /**
      * obtiene observaciones y el estado en el que estan agrupados por ente fiscalizado
      *
@@ -76,7 +76,5 @@ public class EntesFiscalizados extends ServiceFacade<ManagerEnteFiscalizado, Ent
         }
         return res;
     }
-    
-    
-    
+
 }

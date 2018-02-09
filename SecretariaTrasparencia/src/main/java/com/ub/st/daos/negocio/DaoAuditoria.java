@@ -10,13 +10,13 @@ import com.ub.st.entities.negocio.Auditoria;
 import com.ub.st.utils.UtilsDB;
 
 /**
- * 
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
-public class DaoAuditoria extends DaoSQLFacade<Auditoria, Integer>{
-    
+public class DaoAuditoria extends DaoSQLFacade<Auditoria, Integer> {
+
     public DaoAuditoria() {
         super(UtilsDB.getEMFactoryDefault(), Auditoria.class);
     }
-    
+
 }

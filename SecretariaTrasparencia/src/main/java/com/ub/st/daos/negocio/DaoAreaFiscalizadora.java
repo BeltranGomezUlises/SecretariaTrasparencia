@@ -14,9 +14,9 @@ import com.ub.st.utils.UtilsDB;
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 public class DaoAreaFiscalizadora extends DaoSQLFacade<AreaFiscalizadora, Integer> {
-    
+
     public DaoAreaFiscalizadora() {
         super(UtilsDB.getEMFactoryDefault(), AreaFiscalizadora.class);
     }
-    
+
 }

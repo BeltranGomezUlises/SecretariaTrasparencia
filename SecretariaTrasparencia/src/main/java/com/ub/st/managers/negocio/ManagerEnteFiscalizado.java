@@ -37,6 +37,7 @@ public class ManagerEnteFiscalizado extends ManagerSQL<EnteFiscalizado, Integer>
 
     /**
      * Calcula los importe agrupados por ente fiscalizado
+     *
      * @param filtroFechas modelo de filtro de fechas, mandar null o no mandar alguna fecha para ignorar el filtro
      * @return lista de modelos de importes
      * @throws Exception si existe un error de I/O
@@ -51,10 +52,14 @@ public class ManagerEnteFiscalizado extends ManagerSQL<EnteFiscalizado, Integer>
             importeObservado = 0;
             importeAclarado = 0;
             importeRecuperado = 0;
-            for (Auditoria auditoria : ente.getAuditoriaList()) {                
+            for (Auditoria auditoria : ente.getAuditoriaList()) {
                 Stream<Observacion> sObservaciones = auditoria.getObservacionList().stream();
-                if (filtroFechas.getFechaInicio() != null) sObservaciones = sObservaciones.filter( o -> !o.getFechaRegistro().before(filtroFechas.getFechaInicio()));                    
-                if (filtroFechas.getFechaFin() != null) sObservaciones = sObservaciones.filter( o -> !o.getFechaRegistro().after(filtroFechas.getFechaFin()));                                        
+                if (filtroFechas.getFechaInicio() != null) {
+                    sObservaciones = sObservaciones.filter(o -> !o.getFechaRegistro().before(filtroFechas.getFechaInicio()));
+                }
+                if (filtroFechas.getFechaFin() != null) {
+                    sObservaciones = sObservaciones.filter(o -> !o.getFechaRegistro().after(filtroFechas.getFechaFin()));
+                }
                 for (Observacion observacion : sObservaciones.collect(toList())) {
                     importeObservado += observacion.getImporteObservado();
                     for (Seguimiento seguimiento : observacion.getSeguimientoList()) {
@@ -76,6 +81,7 @@ public class ManagerEnteFiscalizado extends ManagerSQL<EnteFiscalizado, Integer>
 
     /**
      * obtiene los estaos de las observaciones agrupado por ente fiscalizado
+     *
      * @param filtroFecha modelo de filtro por fechas, mandar null alguna fecha para ignorar el filtrado
      * @return lista de modelos de estados de observaciones
      * @throws Exception
@@ -83,19 +89,23 @@ public class ManagerEnteFiscalizado extends ManagerSQL<EnteFiscalizado, Integer>
     public List<ModelEstadoObservaciones> estadoObservacionesPorEnteFiscalizado(ModelFiltroFecha filtroFecha) throws Exception {
         List<EnteFiscalizado> entesFiscalizados = this.findAll();
         List<ModelEstadoObservaciones> res = new ArrayList<>();
-        ModelEstadoObservaciones modelEstadoObservaciones;           
+        ModelEstadoObservaciones modelEstadoObservaciones;
         int añoActual = new Date().getYear();
         for (EnteFiscalizado ente : entesFiscalizados) {
-            modelEstadoObservaciones = new ModelEstadoObservaciones(ente.getId(), ente.getNombre());                        
-            for (Auditoria auditoria : ente.getAuditoriaList()) {                
+            modelEstadoObservaciones = new ModelEstadoObservaciones(ente.getId(), ente.getNombre());
+            for (Auditoria auditoria : ente.getAuditoriaList()) {
                 Stream<Observacion> sObservaciones = auditoria.getObservacionList().stream();
-                if (filtroFecha.getFechaInicio() != null) sObservaciones = sObservaciones.filter( o -> !o.getFechaRegistro().before(filtroFecha.getFechaInicio()));                    
-                if (filtroFecha.getFechaFin() != null) sObservaciones = sObservaciones.filter( o -> !o.getFechaRegistro().after(filtroFecha.getFechaFin()));                                        
+                if (filtroFecha.getFechaInicio() != null) {
+                    sObservaciones = sObservaciones.filter(o -> !o.getFechaRegistro().before(filtroFecha.getFechaInicio()));
+                }
+                if (filtroFecha.getFechaFin() != null) {
+                    sObservaciones = sObservaciones.filter(o -> !o.getFechaRegistro().after(filtroFecha.getFechaFin()));
+                }
                 List<Observacion> observaciones = sObservaciones.collect(toList());
-                modelEstadoObservaciones.addNuevas((int) observaciones.stream().filter( o -> o.getFechaRegistro().getYear() == añoActual).count());
-                modelEstadoObservaciones.addVigentes((int) observaciones.stream().filter( o -> o.getFechaRegistro().getYear() != añoActual).count());                
-                modelEstadoObservaciones.addSolventadas((int) observaciones.stream().filter( o -> o.getIpra() == true && o.getStatusIpra() == 1 && o.getRecomendacionCorrectiva() == true && o.getRecomendacionPreventiva() == true).count());                
-            }                        
+                modelEstadoObservaciones.addNuevas((int) observaciones.stream().filter(o -> o.getFechaRegistro().getYear() == añoActual).count());
+                modelEstadoObservaciones.addVigentes((int) observaciones.stream().filter(o -> o.getFechaRegistro().getYear() != añoActual).count());
+                //modelEstadoObservaciones.addSolventadas((int) observaciones.stream().filter(o -> o.getIpra() == true && o.getStatusIpra() == 1 && o.getRecomendacionCorrectiva() == true && o.getRecomendacionPreventiva() == true).count());
+            }
             modelEstadoObservaciones.setTotales(modelEstadoObservaciones.getVigentes() + modelEstadoObservaciones.getNuevas() - modelEstadoObservaciones.getSolventadas());
             res.add(modelEstadoObservaciones);
         }

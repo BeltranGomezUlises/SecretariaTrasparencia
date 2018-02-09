@@ -13,10 +13,10 @@ import com.ub.st.utils.UtilsDB;
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
-public class DaoCoordinacionGeneral extends DaoSQLFacade<CoordinacionGeneral, Integer>{
-    
+public class DaoCoordinacionGeneral extends DaoSQLFacade<CoordinacionGeneral, Integer> {
+
     public DaoCoordinacionGeneral() {
         super(UtilsDB.getEMFactoryDefault(), CoordinacionGeneral.class);
     }
-    
+
 }

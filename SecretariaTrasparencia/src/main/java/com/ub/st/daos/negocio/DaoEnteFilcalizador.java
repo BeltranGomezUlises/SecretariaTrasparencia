@@ -11,10 +11,10 @@ import java.util.Map;
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
-public class DaoEnteFilcalizador extends DaoSQLFacade<EnteFiscalizador, Integer>{
-        
+public class DaoEnteFilcalizador extends DaoSQLFacade<EnteFiscalizador, Integer> {
+
     public DaoEnteFilcalizador() {
         super(UtilsDB.getEMFactoryDefault(), EnteFiscalizador.class);
-    }                        
-    
+    }
+
 }

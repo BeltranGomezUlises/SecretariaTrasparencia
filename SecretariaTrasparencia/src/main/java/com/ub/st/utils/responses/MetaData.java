@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 /**
  * modelo contenedor de los metadatos de una respuesta
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @JsonInclude(Include.NON_NULL)
@@ -18,14 +19,14 @@ public class MetaData {
     private String message;
     private Status status;
     private String devMessage;
-    private Object metaData;   
+    private Object metaData;
 
-    public MetaData() {        
+    public MetaData() {
         this.status = Status.OK;
     }
 
     public MetaData(String message) {
-        this.message = message;        
+        this.message = message;
         this.status = Status.OK;
     }
 
@@ -41,7 +42,7 @@ public class MetaData {
     }
 
     public MetaData(Object metaData, String message) {
-        this.message = message;        
+        this.message = message;
         this.status = Status.OK;
         this.metaData = metaData;
     }
@@ -89,8 +90,8 @@ public class MetaData {
 
     public Object getMetaData() {
         return metaData;
-    }   
-    
+    }
+
     @Override
     public String toString() {
         return "MetaData{" + "message=" + message + ", status=" + status + ", devMessage=" + devMessage + ", metaData=" + metaData + '}';

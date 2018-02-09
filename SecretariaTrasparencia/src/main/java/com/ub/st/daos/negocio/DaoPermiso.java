@@ -14,9 +14,9 @@ import com.ub.st.utils.UtilsDB;
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 public class DaoPermiso extends DaoSQLFacade<Permiso, String> {
-    
+
     public DaoPermiso() {
         super(UtilsDB.getEMFactoryDefault(), Permiso.class);
     }
-    
+
 }

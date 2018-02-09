@@ -13,10 +13,10 @@ import com.ub.st.utils.UtilsDB;
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
-public class DaoEnteFiscalizado extends DaoSQLFacade<EnteFiscalizado, Integer>{
-    
+public class DaoEnteFiscalizado extends DaoSQLFacade<EnteFiscalizado, Integer> {
+
     public DaoEnteFiscalizado() {
         super(UtilsDB.getEMFactoryDefault(), EnteFiscalizado.class);
     }
-    
+
 }

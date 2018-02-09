@@ -11,12 +11,13 @@ import com.ub.st.services.commons.ServiceFacade;
 import javax.ws.rs.Path;
 
 /**
- * Catálogo de entidades coordinadas
+ * Servicios LCRUD para catálogo entidades coordinadas
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Path("/entidadesCoordinadas")
-public class EntidadesCoordinadas extends ServiceFacade<ManagerEntidadCoordinada, EntidadCoordinada, Integer>{
-    
+public class EntidadesCoordinadas extends ServiceFacade<ManagerEntidadCoordinada, EntidadCoordinada, Integer> {
+
     public EntidadesCoordinadas() {
         super(ManagerEntidadCoordinada.class);
     }

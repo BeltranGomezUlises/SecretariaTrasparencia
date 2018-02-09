@@ -16,21 +16,29 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
 /**
+ * Servicios LCRUD para Observaciones
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Path("/observaciones")
-public class Obervaciones  extends ServiceFacade<ManagerObervacion, Observacion, Integer>{
-    
+public class Obervaciones extends ServiceFacade<ManagerObervacion, Observacion, Integer> {
+
     public Obervaciones() {
         super(ManagerObervacion.class);
     }
-        
+
+    /**
+     * Consulta la lista de observaciones de una auditoria en particular
+     *
+     * @param token token de sesion
+     * @param id identificador de la auditoria
+     * @return lista de observaciones que pertenecen a la auditoria solicitada en el parametro id
+     */
     @Path("/auditoria/{id}")
     @GET
-    public List<Observacion> observacionesDeAuditoria(@HeaderParam("Authorization") String token, @PathParam("id") int id){        
+    public List<Observacion> observacionesDeAuditoria(@HeaderParam("Authorization") String token, @PathParam("id") int id) {
         ManagerObervacion managerObervacion = new ManagerObervacion();
-        return managerObervacion.stream().where( o -> o.getAuditoria().getId() == id).collect(toList());
+        return managerObervacion.stream().where(o -> o.getAuditoria().getId() == id).collect(toList());
     }
-          
+
 }

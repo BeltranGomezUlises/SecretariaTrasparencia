@@ -11,12 +11,13 @@ import com.ub.st.services.commons.ServiceFacade;
 import javax.ws.rs.Path;
 
 /**
- * Catálogo de organismos desconcentrados
+ * Servicios LCRUD para organismos desconcentrados
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Path("/organismosDesconcentrados")
 public class OrganismosDesconcentrados extends ServiceFacade<ManagerOrganismoDesconcentrado, OrganismoDesconcentrado, Integer> {
-    
+
     public OrganismosDesconcentrados() {
         super(ManagerOrganismoDesconcentrado.class);
     }

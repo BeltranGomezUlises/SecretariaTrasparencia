@@ -97,7 +97,6 @@ public class UtilsBitacora {
 //        JacksonDBCollection<ModeloBitacora, String> coll = JacksonDBCollection.wrap(UtilsDB.getBitacoraCollection(collectionName), ModeloBitacora.class, String.class);
 //        return coll.find(DBQuery.lessThanEquals("fecha", fechaFinal)).toArray();
 //    }
-
     public static class ModeloBitacora {//extends EntityMongo<String> {
 
         @JsonIgnore
@@ -183,7 +182,6 @@ public class UtilsBitacora {
 //        public void setId(String id) {
 //            this.id = id;
 //        }
-
     }
 
 }

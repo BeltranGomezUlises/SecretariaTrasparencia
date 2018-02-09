@@ -39,8 +39,8 @@ public class TipoObservacion implements Serializable {
     @Size(min = 1, max = 2147483647)
     @Column(name = "nombre")
     private String nombre;
-    @OneToMany(mappedBy = "tipoObservacion", fetch = FetchType.EAGER)
-    private List<Observacion> observacionList;
+//    @OneToMany(mappedBy = "tipoObservacion", fetch = FetchType.EAGER)
+//    private List<Observacion> observacionList;
 
     public TipoObservacion() {
     }
@@ -70,15 +70,14 @@ public class TipoObservacion implements Serializable {
         this.nombre = nombre;
     }
 
-    @JsonIgnore
-    public List<Observacion> getObservacionList() {
-        return observacionList;
-    }
-
-    public void setObservacionList(List<Observacion> observacionList) {
-        this.observacionList = observacionList;
-    }
-
+//    @JsonIgnore
+//    public List<Observacion> getObservacionList() {
+//        return observacionList;
+//    }
+//
+//    public void setObservacionList(List<Observacion> observacionList) {
+//        this.observacionList = observacionList;
+//    }
     @Override
     public int hashCode() {
         int hash = 0;
@@ -103,5 +102,5 @@ public class TipoObservacion implements Serializable {
     public String toString() {
         return "com.ub.st.entities.negocio.TipoObservacion[ id=" + id + " ]";
     }
-    
+
 }

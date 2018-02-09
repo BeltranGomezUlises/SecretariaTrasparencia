@@ -15,7 +15,6 @@ import org.jinq.jpa.JinqJPAStreamProvider;
  */
 public class UtilsDB {
 
-    
     //<editor-fold defaultstate="collapsed" desc="JPA utils">
     /*
         the jpa clients are defined here,
@@ -23,13 +22,13 @@ public class UtilsDB {
         for each persistence unit you nedd
      */
     //</editor-fold>
-    private static EntityManagerFactory eMFactory;    
+    private static EntityManagerFactory eMFactory;
 
     /**
      * PERSISTENCE UNIT NAMES
      */
     private static final String UNIT_NAME = "st";
-   
+
     /**
      * metodo fábrica de manejadores de entidad de de la base de datos "easymoney"
      *

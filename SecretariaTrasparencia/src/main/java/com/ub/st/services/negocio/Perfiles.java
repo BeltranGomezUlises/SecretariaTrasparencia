@@ -11,14 +11,15 @@ import com.ub.st.services.commons.ServiceFacade;
 import javax.ws.rs.Path;
 
 /**
- * servicios LCRUd para los perfiles del sistema
+ * Servicios LCRUD para los perfiles del sistema
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Path("/perfiles")
-public class Perfiles extends ServiceFacade<ManagerPerfil, Perfil, Integer>{
-    
+public class Perfiles extends ServiceFacade<ManagerPerfil, Perfil, Integer> {
+
     public Perfiles() {
         super(ManagerPerfil.class);
     }
-    
+
 }

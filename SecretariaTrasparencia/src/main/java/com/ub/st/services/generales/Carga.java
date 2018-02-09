@@ -50,7 +50,7 @@ public class Carga {
             final DaoAreaFiscalizadora daoAreaFiscalizadora = new DaoAreaFiscalizadora();
             final DaoObervacion daoObervacion = new DaoObervacion();
             final DaoSeguimiento daoSeguimiento = new DaoSeguimiento();
-            
+
             Map<String, Map<String, List<Observacion>>> map = observaciones.stream().collect(Collectors.groupingBy(Observacion::getAuditoria, Collectors.groupingBy(Observacion::getEnteFizcalizado)));
             Set<Observacion> auditorias = observaciones.stream().collect(toSet());
 
@@ -80,39 +80,39 @@ public class Carga {
 
                     //colocar el area fiscalizadora
                     try {
-                        au.setAreaFiscalizadoraList(Arrays.asList(daoAreaFiscalizadora.stream().where( area -> area.getEnteFiscalizador().getId() == 8).findAny().get()));
+                        au.setAreaFiscalizadoraList(Arrays.asList(daoAreaFiscalizadora.stream().where(area -> area.getEnteFiscalizador().getId() == 8).findAny().get()));
                     } catch (Exception ex) {
                         Logger.getLogger(Carga.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     try {
                         //guardar la auditoria
-                        daoAuditoria.persist(au);                        
+                        daoAuditoria.persist(au);
                         for (Observacion observacion : auditoriaObservacion.getValue()) {
                             com.ub.st.entities.negocio.Observacion obser = new com.ub.st.entities.negocio.Observacion();
                             obser.setAuditoria(au);
                             obser.setNumeroObservacion(String.valueOf(observacion.getNumeroObservacion()));
                             obser.setImporteObservado(observacion.getMontoObservado());
-                            obser.setRecomendacionCorrectiva(observacion.isSituacionCorrectiva());
-                            obser.setRecomendacionPreventiva(observacion.isSituacionPreventiva());
+//                            obser.setRecomendacionCorrectiva(observacion.isSituacionCorrectiva());
+//                            obser.setRecomendacionPreventiva(observacion.isSituacionPreventiva());
                             obser.setDescripcion(observacion.getDescripcion());
-                            obser.setIpra(observacion.isIpra());
+//                            obser.setIpra(observacion.isIpra());
                             obser.setPendiente("");
                             if (observacion.isIpra()) {
                                 if (!observacion.getEstadoIpra().equals("PRESCRITO")) {
-                                    obser.setStatusIpra(1);
-                                }else{
-                                    obser.setStatusIpra(0);
+//                                    obser.setStatusIpra(1);
+                                } else {
+//                                    obser.setStatusIpra(0);
                                 }
                             }
-                            obser.setDesRecomendacionCorrectiva("");
-                            obser.setDesRecomendacionPreventiva("");         
-                            
+//                            obser.setDesRecomendacionCorrectiva("");
+//                            obser.setDesRecomendacionPreventiva("");
+
                             daoObervacion.persist(obser);
-                            
+
                             if (observacion.getMontoAclarado() > 0f) {
-                                
+
                                 Seguimiento s = new Seguimiento();
-                                s.setObservacion(obser);                               
+                                s.setObservacion(obser);
                                 s.setAntecedentes("");
                                 s.setDocuemntacionRecibida("");
                                 s.setDocumentacionAnexa("");
@@ -120,10 +120,10 @@ public class Carga {
                                 s.setImporteRecuperado(0);
                                 s.setNumeroOficio("");
                                 s.setRecomendacionCorrectiva("");
-                                s.setRecomendacionPreventiva("");                                                                
-                                
-                                daoSeguimiento.persist(s);                                
-                            }                                                        
+                                s.setRecomendacionPreventiva("");
+
+                                daoSeguimiento.persist(s);
+                            }
                         }
                     } catch (Exception ex) {
                         Logger.getLogger(Carga.class.getName()).log(Level.SEVERE, null, ex);
@@ -136,7 +136,7 @@ public class Carga {
         }
         return r;
     }
-    
+
     @POST
     @Path("/observacionesASF")
     public Response<String> cargaASF(List<Observacion> observaciones) {
@@ -147,7 +147,7 @@ public class Carga {
             final DaoAreaFiscalizadora daoAreaFiscalizadora = new DaoAreaFiscalizadora();
             final DaoObervacion daoObervacion = new DaoObervacion();
             final DaoSeguimiento daoSeguimiento = new DaoSeguimiento();
-            
+
             Map<String, Map<String, List<Observacion>>> map = observaciones.stream().collect(Collectors.groupingBy(Observacion::getAuditoria, Collectors.groupingBy(Observacion::getEnteFizcalizado)));
             Set<Observacion> auditorias = observaciones.stream().collect(toSet());
 
@@ -157,7 +157,7 @@ public class Carga {
                     Auditoria au = new Auditoria();
                     au.setAnioRealiza(auditoriaObservacion.getValue().get(0).getAnio());
                     au.setAnioRevisa(auditoriaObservacion.getValue().get(0).getAnioRevisa());
-                    au.setNumero(String.valueOf((int)Float.parseFloat(auditoria.getKey())));
+                    au.setNumero(String.valueOf((int) Float.parseFloat(auditoria.getKey())));
                     au.setSituacionActual("carga desde excel");
 
                     //existe el ente, si no crealo
@@ -179,7 +179,7 @@ public class Carga {
                     AreaFiscalizadora areaFiscalizadora;
                     try {
                         String nombreArea = auditoriaObservacion.getValue().get(0).getAreaFiscalizada();
-                        areaFiscalizadora = daoAreaFiscalizadora.stream().where( area -> area.getNombre().equals(nombreArea)).findFirst().get();                        
+                        areaFiscalizadora = daoAreaFiscalizadora.stream().where(area -> area.getNombre().equals(nombreArea)).findFirst().get();
                     } catch (Exception ex) {
                         areaFiscalizadora = new AreaFiscalizadora();
                         areaFiscalizadora.setNombre(auditoriaObservacion.getValue().get(0).getAreaFiscalizada());
@@ -187,36 +187,36 @@ public class Carga {
                         Logger.getLogger(Carga.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     au.setAreaFiscalizadoraList(Arrays.asList(areaFiscalizadora));
-                    
+
                     try {
                         //guardar la auditoria
-                        daoAuditoria.persist(au);                        
+                        daoAuditoria.persist(au);
                         for (Observacion observacion : auditoriaObservacion.getValue()) {
                             com.ub.st.entities.negocio.Observacion obser = new com.ub.st.entities.negocio.Observacion();
                             obser.setAuditoria(au);
                             obser.setNumeroObservacion(observacion.getNumeroObservacion());
                             obser.setImporteObservado(observacion.getMontoObservado());
-                            obser.setRecomendacionCorrectiva(observacion.isSituacionCorrectiva());
-                            obser.setRecomendacionPreventiva(observacion.isSituacionPreventiva());
+//                            obser.setRecomendacionCorrectiva(observacion.isSituacionCorrectiva());
+//                            obser.setRecomendacionPreventiva(observacion.isSituacionPreventiva());
                             obser.setDescripcion(observacion.getDescripcion());
-                            obser.setIpra(observacion.isIpra());
+//                            obser.setIpra(observacion.isIpra());
                             obser.setPendiente("");
-                            if (observacion.isIpra()) {
-                                if (!observacion.getEstadoIpra().equals("PRESCRITO")) {
-                                    obser.setStatusIpra(1);
-                                }else{
-                                    obser.setStatusIpra(0);
-                                }
-                            }
-                            obser.setDesRecomendacionCorrectiva("");
-                            obser.setDesRecomendacionPreventiva("");         
-                            
+//                            if (observacion.isIpra()) {
+//                                if (!observacion.getEstadoIpra().equals("PRESCRITO")) {
+//                                    obser.setStatusIpra(1);
+//                                } else {
+//                                    obser.setStatusIpra(0);
+//                                }
+//                            }
+//                            obser.setDesRecomendacionCorrectiva("");
+//                            obser.setDesRecomendacionPreventiva("");
+
                             daoObervacion.persist(obser);
-                            
+
                             if (observacion.getMontoAclarado() > 0f) {
-                                
+
                                 Seguimiento s = new Seguimiento();
-                                s.setObservacion(obser);                               
+                                s.setObservacion(obser);
                                 s.setAntecedentes("");
                                 s.setDocuemntacionRecibida("");
                                 s.setDocumentacionAnexa("");
@@ -224,10 +224,10 @@ public class Carga {
                                 s.setImporteRecuperado(0);
                                 s.setNumeroOficio("");
                                 s.setRecomendacionCorrectiva("");
-                                s.setRecomendacionPreventiva("");                                                                
-                                
-                                daoSeguimiento.persist(s);                                
-                            }                                                        
+                                s.setRecomendacionPreventiva("");
+
+                                daoSeguimiento.persist(s);
+                            }
                         }
                     } catch (Exception ex) {
                         Logger.getLogger(Carga.class.getName()).log(Level.SEVERE, null, ex);

@@ -11,12 +11,13 @@ import com.ub.st.services.commons.ServiceFacade;
 import javax.ws.rs.Path;
 
 /**
- * Catálogo de organismos descentralizados
+ * Servicios LCRUD para organismos descentralizados
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Path("/organismosDescentralizados")
 public class OrganismosDescentralizados extends ServiceFacade<ManagerOrganismoDescentralizado, OrganismoDescentralizado, Integer> {
-    
+
     public OrganismosDescentralizados() {
         super(ManagerOrganismoDescentralizado.class);
     }

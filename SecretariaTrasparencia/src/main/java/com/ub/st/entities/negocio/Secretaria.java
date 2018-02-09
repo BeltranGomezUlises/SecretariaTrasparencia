@@ -24,6 +24,7 @@ import javax.validation.constraints.Size;
 
 /**
  * Entidad de secretarias
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Entity
@@ -71,7 +72,7 @@ public class Secretaria extends EntitySQL<Integer> implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-   
+
     @JsonIgnore
     public List<Usuario> getUsuarioList() {
         return usuarioList;
@@ -110,5 +111,5 @@ public class Secretaria extends EntitySQL<Integer> implements Serializable {
     public Integer obtenIdEntidad() {
         return id;
     }
-    
+
 }

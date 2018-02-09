@@ -7,10 +7,11 @@ package com.ub.st.models.accesos;
 
 /**
  * modelo de datos para inicio de sesion
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 public class ModelLogin {
-    
+
     private String usuario;
     private String contra;
 
@@ -28,6 +29,6 @@ public class ModelLogin {
 
     public void setContra(String contra) {
         this.contra = contra;
-    }            
-    
+    }
+
 }

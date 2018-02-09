@@ -16,21 +16,22 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
 /**
+ * Servicios LCRUD para catálogo seguimientos
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Path("/seguimientos")
-public class Seguimientos extends ServiceFacade<ManagerSeguimiento, Seguimiento, Integer>{
-    
+public class Seguimientos extends ServiceFacade<ManagerSeguimiento, Seguimiento, Integer> {
+
     public Seguimientos() {
         super(ManagerSeguimiento.class);
     }
-    
+
     @Path("/observacion/{id}")
     @GET
-    public List<Seguimiento> seguimientosDeObservacion(@HeaderParam("Authorization") String token, @PathParam("id") int id){        
+    public List<Seguimiento> seguimientosDeObservacion(@HeaderParam("Authorization") String token, @PathParam("id") int id) {
         ManagerSeguimiento managerObervacion = new ManagerSeguimiento();
-        return managerObervacion.stream().where( o -> o.getObservacion().getId() == id).collect(toList());
+        return managerObervacion.stream().where(o -> o.getObservacion().getId() == id).collect(toList());
     }
-    
+
 }

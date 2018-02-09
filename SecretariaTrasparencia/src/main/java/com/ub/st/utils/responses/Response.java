@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * modelo de respuesta generico para servicios
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  * @param <T> modelo encapsulado en este envoltorio de respuesta generica
  */
@@ -17,17 +18,17 @@ public class Response<T> {
 
     private T data;
     private MetaData meta;
-        
-    public Response() {        
+
+    public Response() {
         meta = new MetaData();
     }
 
     public Response(T data, String message, Status status, String devMessage) {
-        this.data=data;
+        this.data = data;
         this.meta = new MetaData(message, status, devMessage);
-    }   
+    }
 
-    public Response(Status status,String devMessage) {        
+    public Response(Status status, String devMessage) {
         this.meta = new MetaData(status, devMessage);
     }
 
@@ -35,13 +36,13 @@ public class Response<T> {
         this.data = data;
         this.meta = new MetaData(status, devMessage);
     }
-    
-    public Response(T data, Object metaData, String message, Status status, String devMessage) {
-        this.data=data;
-        this.meta = new MetaData(message, status, devMessage);
-    }   
 
-    public Response(Status status,String devMessage, Object metaData ) {        
+    public Response(T data, Object metaData, String message, Status status, String devMessage) {
+        this.data = data;
+        this.meta = new MetaData(message, status, devMessage);
+    }
+
+    public Response(Status status, String devMessage, Object metaData) {
         this.meta = new MetaData(status, devMessage);
     }
 
@@ -65,20 +66,20 @@ public class Response<T> {
     public void setMeta(MetaData meta) {
         this.meta = meta;
     }
-           
-    public void setMessage(String message){
+
+    public void setMessage(String message) {
         this.meta.setMessage(message);
     }
-    
-    public void setStatus(Status estatus){
+
+    public void setStatus(Status estatus) {
         this.meta.setStatus(estatus);
     }
-    
-    public void setMetaData(Object metaData){
+
+    public void setMetaData(Object metaData) {
         this.meta.setMetaData(metaData);
     }
-    
-    public void setDevMessage(String devMessage){
+
+    public void setDevMessage(String devMessage) {
         this.meta.setDevMessage(devMessage);
     }
 }
