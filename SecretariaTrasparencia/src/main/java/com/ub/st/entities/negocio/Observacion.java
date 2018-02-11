@@ -37,6 +37,33 @@ import javax.validation.constraints.Size;
 @Table(name = "observacion")
 public class Observacion extends EntitySQL<Integer> implements Serializable {
 
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "recomendacion_preventiva")
+    private boolean recomendacionPreventiva;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 2147483647)
+    @Column(name = "des_recomendacion_preventiva")
+    private String desRecomendacionPreventiva;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "ipra")
+    private boolean ipra;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "status_ipra")
+    private int statusIpra;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "recomendacion_correctiva")
+    private boolean recomendacionCorrectiva;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 2147483647)
+    @Column(name = "des_recomendacion_correctiva")
+    private String desRecomendacionCorrectiva;
+
     @JoinColumn(name = "ente_auditado", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private EnteFiscalizado enteAuditado;
@@ -74,8 +101,7 @@ public class Observacion extends EntitySQL<Integer> implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "observacion", fetch = FetchType.EAGER)
     private List<Seguimiento> seguimientoList;
     @JoinColumn(name = "auditoria", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    @JsonIgnore
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)    
     private Auditoria auditoria;
     @Basic(optional = false)
     @NotNull
@@ -230,6 +256,54 @@ public class Observacion extends EntitySQL<Integer> implements Serializable {
 
     public void setEstatus(EstatusObservacion estatus) {
         this.estatus = estatus;
+    }
+
+    public boolean getRecomendacionPreventiva() {
+        return recomendacionPreventiva;
+    }
+
+    public void setRecomendacionPreventiva(boolean recomendacionPreventiva) {
+        this.recomendacionPreventiva = recomendacionPreventiva;
+    }
+
+    public String getDesRecomendacionPreventiva() {
+        return desRecomendacionPreventiva;
+    }
+
+    public void setDesRecomendacionPreventiva(String desRecomendacionPreventiva) {
+        this.desRecomendacionPreventiva = desRecomendacionPreventiva;
+    }
+
+    public boolean getIpra() {
+        return ipra;
+    }
+
+    public void setIpra(boolean ipra) {
+        this.ipra = ipra;
+    }
+
+    public int getStatusIpra() {
+        return statusIpra;
+    }
+
+    public void setStatusIpra(int statusIpra) {
+        this.statusIpra = statusIpra;
+    }
+
+    public boolean getRecomendacionCorrectiva() {
+        return recomendacionCorrectiva;
+    }
+
+    public void setRecomendacionCorrectiva(boolean recomendacionCorrectiva) {
+        this.recomendacionCorrectiva = recomendacionCorrectiva;
+    }
+
+    public String getDesRecomendacionCorrectiva() {
+        return desRecomendacionCorrectiva;
+    }
+
+    public void setDesRecomendacionCorrectiva(String desRecomendacionCorrectiva) {
+        this.desRecomendacionCorrectiva = desRecomendacionCorrectiva;
     }
 
 }

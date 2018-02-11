@@ -5,17 +5,14 @@
  */
 package com.ub.st.entities.negocio;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ub.st.entities.commons.EntitySQL;
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -26,7 +23,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "tipo_observacion")
-public class TipoObservacion implements Serializable {
+public class TipoObservacion extends EntitySQL<Integer> implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -101,6 +98,11 @@ public class TipoObservacion implements Serializable {
     @Override
     public String toString() {
         return "com.ub.st.entities.negocio.TipoObservacion[ id=" + id + " ]";
+    }
+
+    @Override
+    public Integer obtenIdEntidad() {
+        return id;
     }
 
 }
