@@ -14,10 +14,10 @@ import javax.persistence.EntityManagerFactory;
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
-public class DaoUsuario extends DaoSQLFacade<Usuario, Integer>{
-    
+public class DaoUsuario extends DaoSQLFacade<Usuario, Integer> {
+
     public DaoUsuario() {
         super(UtilsDB.getEMFactoryDefault(), Usuario.class);
     }
-    
+
 }

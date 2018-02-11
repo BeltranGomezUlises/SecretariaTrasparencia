@@ -28,6 +28,7 @@ import javax.validation.constraints.Size;
 
 /**
  * Entidad de perfiles
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Entity
@@ -81,7 +82,7 @@ public class Perfil extends EntitySQL<Integer> implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
     public List<Permiso> getPermisoList() {
         return permisoList;
     }
@@ -128,5 +129,5 @@ public class Perfil extends EntitySQL<Integer> implements Serializable {
     public Integer obtenIdEntidad() {
         return id;
     }
-    
+
 }

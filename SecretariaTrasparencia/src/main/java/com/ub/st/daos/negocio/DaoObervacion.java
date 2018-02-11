@@ -15,15 +15,15 @@ import java.util.List;
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
-public class DaoObervacion  extends DaoSQLFacade<Observacion, Integer>{
-    
+public class DaoObervacion extends DaoSQLFacade<Observacion, Integer> {
+
     public DaoObervacion() {
         super(UtilsDB.getEMFactoryDefault(), Observacion.class);
     }
 
     @Override
     public List<Observacion> persistAll(List<Observacion> entities) throws Exception {
-        entities.forEach( o -> o.setFechaRegistro(new Date()));
+        entities.forEach(o -> o.setFechaRegistro(new Date()));
         return super.persistAll(entities); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -32,6 +32,5 @@ public class DaoObervacion  extends DaoSQLFacade<Observacion, Integer>{
         entity.setFechaRegistro(new Date());
         super.persist(entity); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
+
 }

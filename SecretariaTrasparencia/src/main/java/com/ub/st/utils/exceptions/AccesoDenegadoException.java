@@ -20,10 +20,10 @@ package com.ub.st.utils.exceptions;
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
-public class AccesoDenegadoException extends Exception{
+public class AccesoDenegadoException extends Exception {
 
     public AccesoDenegadoException(String message) {
         super(message);
     }
-    
+
 }

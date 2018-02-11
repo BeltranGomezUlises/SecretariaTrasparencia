@@ -13,7 +13,7 @@ import com.ub.st.managers.commons.ManagerSQL;
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
-public class ManagerCoordinacionGeneral extends ManagerSQL<CoordinacionGeneral, Integer>{
+public class ManagerCoordinacionGeneral extends ManagerSQL<CoordinacionGeneral, Integer> {
 
     public ManagerCoordinacionGeneral() {
         super(new DaoCoordinacionGeneral());
@@ -23,5 +23,5 @@ public class ManagerCoordinacionGeneral extends ManagerSQL<CoordinacionGeneral, 
     public String nombreColeccionParaRegistros() throws UnsupportedOperationException {
         return "coordinacionGeneral";
     }
-    
+
 }

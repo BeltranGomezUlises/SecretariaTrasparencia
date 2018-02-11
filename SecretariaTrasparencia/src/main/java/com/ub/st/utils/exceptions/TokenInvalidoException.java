@@ -20,10 +20,10 @@ package com.ub.st.utils.exceptions;
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
-public class TokenInvalidoException extends Exception{
+public class TokenInvalidoException extends Exception {
 
     public TokenInvalidoException(String message) {
         super(message);
     }
-        
+
 }

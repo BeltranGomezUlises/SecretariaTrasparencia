@@ -19,6 +19,7 @@ import javax.validation.constraints.Size;
 
 /**
  * Entidad de coordinaciones generales
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Entity
@@ -94,5 +95,5 @@ public class CoordinacionGeneral extends EntitySQL<Integer> implements Serializa
     public Integer obtenIdEntidad() {
         return id;
     }
-    
+
 }

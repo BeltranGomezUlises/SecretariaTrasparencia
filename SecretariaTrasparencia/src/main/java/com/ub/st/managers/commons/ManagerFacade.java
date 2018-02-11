@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * fachada de manager general
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  * @param <T> tipo de dato de la entidad que utilizará este manejador
  * @param <K> tipo de dato de la llave primaria de la entidad
@@ -34,11 +35,10 @@ public abstract class ManagerFacade<T extends IEntity<K>, K> {
 
     public void setUsuario(Long usuario) {
         this.usuario = usuario;
-    }    
+    }
 
     /**
-     * asignar un token de sesion a este manager, con la intencion de validar el
-     * usuario en pemisos y registros de bitacoras
+     * asignar un token de sesion a este manager, con la intencion de validar el usuario en pemisos y registros de bitacoras
      *
      * @param token token de sesion
      * @throws TokenInvalidoException si el token proporsionado no es válido
@@ -75,8 +75,7 @@ public abstract class ManagerFacade<T extends IEntity<K>, K> {
     public abstract void delete(K id) throws Exception;
 
     /**
-     * remueve de base de datos las entidades que su propiedad id corresponda
-     * con los objetos proporsionados
+     * remueve de base de datos las entidades que su propiedad id corresponda con los objetos proporsionados
      *
      * @param ids lista de identificadores de las entidades
      * @throws Exception si existió algún problema al intentar remover
@@ -84,11 +83,9 @@ public abstract class ManagerFacade<T extends IEntity<K>, K> {
     public abstract void deleteAll(List<K> ids) throws Exception;
 
     /**
-     * reemplaza la entidad proporsionada por la existente en base de datos que
-     * coincida con su propiedad id
+     * reemplaza la entidad proporsionada por la existente en base de datos que coincida con su propiedad id
      *
-     * @param entity la entidad con la cual reemplazar la existente en base de
-     * datos
+     * @param entity la entidad con la cual reemplazar la existente en base de datos
      * @throws Exception si exitió un problema al actualizar
      */
     public abstract void update(T entity) throws Exception;
@@ -119,14 +116,13 @@ public abstract class ManagerFacade<T extends IEntity<K>, K> {
     public abstract List<T> findAll() throws Exception;
 
     /**
-     * busca todas las entidades existentes en base de datos con un numero
-     * maximo de elementos a retornas
+     * busca todas las entidades existentes en base de datos con un numero maximo de elementos a retornas
      *
      * @param max numero maximo de entidades a tomar de base de datos
      * @return lista con las entidades manejadas que existen en base de datos
      * @throws java.lang.Exception
      */
-    public abstract List<T> findAll(int max)throws Exception;
+    public abstract List<T> findAll(int max) throws Exception;
 
     /**
      * cuenta las entidades manejadas
@@ -134,14 +130,13 @@ public abstract class ManagerFacade<T extends IEntity<K>, K> {
      * @return numero de entidades existentes en base de datos
      * @throws java.lang.Exception
      */
-    public abstract long count()throws Exception;
+    public abstract long count() throws Exception;
 
     /**
-     * Débe de retorna el nombre de la colección que se generará en mongoDB para
-     * almacenar las bitcaras, auditorias, registros estadisticos de esta la     
+     * Débe de retorna el nombre de la colección que se generará en mongoDB para almacenar las bitcaras, auditorias, registros estadisticos de esta la
      *
      * @return nombre de la colección a utilizar para el registor de bitacoras
      */
-    public abstract String nombreColeccionParaRegistros() throws UnsupportedOperationException ;
+    public abstract String nombreColeccionParaRegistros() throws UnsupportedOperationException;
 
 }

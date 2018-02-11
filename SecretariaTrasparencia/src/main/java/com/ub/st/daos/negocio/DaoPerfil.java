@@ -14,9 +14,9 @@ import com.ub.st.utils.UtilsDB;
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 public class DaoPerfil extends DaoSQLFacade<Perfil, Integer> {
-    
+
     public DaoPerfil() {
         super(UtilsDB.getEMFactoryDefault(), Perfil.class);
     }
-    
+
 }

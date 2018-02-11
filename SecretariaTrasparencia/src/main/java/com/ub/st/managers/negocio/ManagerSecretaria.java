@@ -13,7 +13,7 @@ import com.ub.st.managers.commons.ManagerSQL;
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
-public class ManagerSecretaria extends ManagerSQL<Secretaria, Integer>{
+public class ManagerSecretaria extends ManagerSQL<Secretaria, Integer> {
 
     public ManagerSecretaria() {
         super(new DaoSecretaria());
@@ -22,6 +22,6 @@ public class ManagerSecretaria extends ManagerSQL<Secretaria, Integer>{
     @Override
     public String nombreColeccionParaRegistros() throws UnsupportedOperationException {
         return "secretarias";
-    }        
-    
+    }
+
 }

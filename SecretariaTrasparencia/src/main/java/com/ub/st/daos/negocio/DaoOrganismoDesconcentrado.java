@@ -13,10 +13,10 @@ import com.ub.st.utils.UtilsDB;
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
-public class DaoOrganismoDesconcentrado extends DaoSQLFacade<OrganismoDesconcentrado, Integer>{
-    
+public class DaoOrganismoDesconcentrado extends DaoSQLFacade<OrganismoDesconcentrado, Integer> {
+
     public DaoOrganismoDesconcentrado() {
         super(UtilsDB.getEMFactoryDefault(), OrganismoDesconcentrado.class);
     }
-    
+
 }

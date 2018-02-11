@@ -9,6 +9,7 @@ import java.util.Date;
 
 /**
  * modelo de filtro de fechas generico
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 public class ModelFiltroFecha {
@@ -39,5 +40,5 @@ public class ModelFiltroFecha {
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
     }
-    
+
 }

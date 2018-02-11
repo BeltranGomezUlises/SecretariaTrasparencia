@@ -13,7 +13,7 @@ import com.ub.st.managers.commons.ManagerSQL;
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
-public class ManagerOrganismoDesconcentrado extends ManagerSQL<OrganismoDesconcentrado, Integer>{
+public class ManagerOrganismoDesconcentrado extends ManagerSQL<OrganismoDesconcentrado, Integer> {
 
     public ManagerOrganismoDesconcentrado() {
         super(new DaoOrganismoDesconcentrado());
@@ -23,5 +23,5 @@ public class ManagerOrganismoDesconcentrado extends ManagerSQL<OrganismoDesconce
     public String nombreColeccionParaRegistros() throws UnsupportedOperationException {
         return "organismoDesconcentrado";
     }
-    
+
 }

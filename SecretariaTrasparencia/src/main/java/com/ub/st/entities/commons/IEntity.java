@@ -20,12 +20,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * Interfaz base para entidades
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  * @param <K> tipo de dato de llave primaria de la entidad
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public abstract class IEntity<K> {
-     
+
     public abstract K obtenIdEntidad();
-                
+
 }

@@ -20,10 +20,10 @@ package com.ub.st.utils.exceptions;
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
-public class TokenExpiradoException extends Exception{
+public class TokenExpiradoException extends Exception {
 
     public TokenExpiradoException(String message) {
         super(message);
-    }    
-    
+    }
+
 }

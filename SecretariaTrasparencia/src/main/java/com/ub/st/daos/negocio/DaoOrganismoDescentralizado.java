@@ -14,9 +14,9 @@ import com.ub.st.utils.UtilsDB;
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 public class DaoOrganismoDescentralizado extends DaoSQLFacade<OrganismoDescentralizado, Integer> {
-    
+
     public DaoOrganismoDescentralizado() {
         super(UtilsDB.getEMFactoryDefault(), OrganismoDescentralizado.class);
     }
-    
+
 }

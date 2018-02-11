@@ -20,10 +20,10 @@ package com.ub.st.utils.exceptions;
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
-public class ParametroInvalidoException extends Exception{
+public class ParametroInvalidoException extends Exception {
 
     public ParametroInvalidoException(String msg) {
         super(msg);
     }
-    
+
 }

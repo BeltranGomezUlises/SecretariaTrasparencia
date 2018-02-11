@@ -37,21 +37,6 @@ import javax.validation.constraints.Size;
 @Table(name = "observacion")
 public class Observacion extends EntitySQL<Integer> implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "numero_expediente")
-    private String numeroExpediente;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 2147483647)
-    @Column(name = "descripcion")
-    private String descripcion;
     @Basic(optional = false)
     @NotNull
     @Column(name = "recomendacion_preventiva")
@@ -61,10 +46,6 @@ public class Observacion extends EntitySQL<Integer> implements Serializable {
     @Size(min = 1, max = 2147483647)
     @Column(name = "des_recomendacion_preventiva")
     private String desRecomendacionPreventiva;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "numero_observacion")
-    private String numeroObservacion;
     @Basic(optional = false)
     @NotNull
     @Column(name = "ipra")
@@ -82,6 +63,33 @@ public class Observacion extends EntitySQL<Integer> implements Serializable {
     @Size(min = 1, max = 2147483647)
     @Column(name = "des_recomendacion_correctiva")
     private String desRecomendacionCorrectiva;
+
+    @JoinColumn(name = "ente_auditado", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private EnteFiscalizado enteAuditado;
+    @JoinColumn(name = "estatus", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private EstatusObservacion estatus;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "numero_expediente")
+    private String numeroExpediente;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 2147483647)
+    @Column(name = "descripcion")
+    private String descripcion;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "numero_observacion")
+    private String numeroObservacion;
     @JoinColumn(name = "contratista", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Contratista contratista;
@@ -93,7 +101,7 @@ public class Observacion extends EntitySQL<Integer> implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "observacion", fetch = FetchType.EAGER)
     private List<Seguimiento> seguimientoList;
     @JoinColumn(name = "auditoria", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)    
     private Auditoria auditoria;
     @Basic(optional = false)
     @NotNull
@@ -108,7 +116,7 @@ public class Observacion extends EntitySQL<Integer> implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fechaRegistro;
 
-    public Observacion() {        
+    public Observacion() {
     }
 
     public Observacion(Integer id) {
@@ -145,54 +153,6 @@ public class Observacion extends EntitySQL<Integer> implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public boolean getRecomendacionPreventiva() {
-        return recomendacionPreventiva;
-    }
-
-    public void setRecomendacionPreventiva(boolean recomendacionPreventiva) {
-        this.recomendacionPreventiva = recomendacionPreventiva;
-    }
-
-    public String getDesRecomendacionPreventiva() {
-        return desRecomendacionPreventiva;
-    }
-
-    public void setDesRecomendacionPreventiva(String desRecomendacionPreventiva) {
-        this.desRecomendacionPreventiva = desRecomendacionPreventiva;
-    }
-
-    public boolean getIpra() {
-        return ipra;
-    }
-
-    public void setIpra(boolean ipra) {
-        this.ipra = ipra;
-    }
-
-    public int getStatusIpra() {
-        return statusIpra;
-    }
-
-    public void setStatusIpra(int statusIpra) {
-        this.statusIpra = statusIpra;
-    }
-
-    public boolean getRecomendacionCorrectiva() {
-        return recomendacionCorrectiva;
-    }
-
-    public void setRecomendacionCorrectiva(boolean recomendacionCorrectiva) {
-        this.recomendacionCorrectiva = recomendacionCorrectiva;
-    }
-
-    public String getDesRecomendacionCorrectiva() {
-        return desRecomendacionCorrectiva;
-    }
-
-    public void setDesRecomendacionCorrectiva(String desRecomendacionCorrectiva) {
-        this.desRecomendacionCorrectiva = desRecomendacionCorrectiva;
     }
 
     public Contratista getContratista() {
@@ -280,6 +240,70 @@ public class Observacion extends EntitySQL<Integer> implements Serializable {
     @Override
     public String toString() {
         return "com.ub.st.entities.negocio.Observacion[ id=" + id + " ]";
+    }
+
+    public EnteFiscalizado getEnteAuditado() {
+        return enteAuditado;
+    }
+
+    public void setEnteAuditado(EnteFiscalizado enteAuditado) {
+        this.enteAuditado = enteAuditado;
+    }
+
+    public EstatusObservacion getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(EstatusObservacion estatus) {
+        this.estatus = estatus;
+    }
+
+    public boolean getRecomendacionPreventiva() {
+        return recomendacionPreventiva;
+    }
+
+    public void setRecomendacionPreventiva(boolean recomendacionPreventiva) {
+        this.recomendacionPreventiva = recomendacionPreventiva;
+    }
+
+    public String getDesRecomendacionPreventiva() {
+        return desRecomendacionPreventiva;
+    }
+
+    public void setDesRecomendacionPreventiva(String desRecomendacionPreventiva) {
+        this.desRecomendacionPreventiva = desRecomendacionPreventiva;
+    }
+
+    public boolean getIpra() {
+        return ipra;
+    }
+
+    public void setIpra(boolean ipra) {
+        this.ipra = ipra;
+    }
+
+    public int getStatusIpra() {
+        return statusIpra;
+    }
+
+    public void setStatusIpra(int statusIpra) {
+        this.statusIpra = statusIpra;
+    }
+
+    public boolean getRecomendacionCorrectiva() {
+        return recomendacionCorrectiva;
+    }
+
+    public void setRecomendacionCorrectiva(boolean recomendacionCorrectiva) {
+        this.recomendacionCorrectiva = recomendacionCorrectiva;
+    }
+
+    public String getDesRecomendacionCorrectiva() {
+        return desRecomendacionCorrectiva;
+    }
+
+    public void setDesRecomendacionCorrectiva(String desRecomendacionCorrectiva) {
+        this.desRecomendacionCorrectiva = desRecomendacionCorrectiva;
     }
 
 }

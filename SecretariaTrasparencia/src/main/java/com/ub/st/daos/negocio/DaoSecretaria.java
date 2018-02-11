@@ -14,9 +14,9 @@ import com.ub.st.utils.UtilsDB;
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 public class DaoSecretaria extends DaoSQLFacade<Secretaria, Integer> {
-    
+
     public DaoSecretaria() {
         super(UtilsDB.getEMFactoryDefault(), Secretaria.class);
     }
-    
+
 }

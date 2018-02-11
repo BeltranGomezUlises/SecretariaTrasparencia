@@ -13,7 +13,7 @@ import com.ub.st.managers.commons.ManagerSQL;
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
-public class ManagerSeguimiento extends ManagerSQL<Seguimiento, Integer>{
+public class ManagerSeguimiento extends ManagerSQL<Seguimiento, Integer> {
 
     public ManagerSeguimiento() {
         super(new DaoSeguimiento());
@@ -23,5 +23,5 @@ public class ManagerSeguimiento extends ManagerSQL<Seguimiento, Integer>{
     public String nombreColeccionParaRegistros() throws UnsupportedOperationException {
         return "seguimientos";
     }
-    
+
 }

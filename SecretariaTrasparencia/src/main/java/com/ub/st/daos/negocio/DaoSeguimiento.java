@@ -13,10 +13,10 @@ import com.ub.st.utils.UtilsDB;
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
-public class DaoSeguimiento extends DaoSQLFacade<Seguimiento, Integer>{
-    
+public class DaoSeguimiento extends DaoSQLFacade<Seguimiento, Integer> {
+
     public DaoSeguimiento() {
         super(UtilsDB.getEMFactoryDefault(), Seguimiento.class);
     }
-    
+
 }

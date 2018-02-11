@@ -5,17 +5,14 @@
  */
 package com.ub.st.entities.negocio;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ub.st.entities.commons.EntitySQL;
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -26,7 +23,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "tipo_observacion")
-public class TipoObservacion implements Serializable {
+public class TipoObservacion extends EntitySQL<Integer> implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -39,8 +36,8 @@ public class TipoObservacion implements Serializable {
     @Size(min = 1, max = 2147483647)
     @Column(name = "nombre")
     private String nombre;
-    @OneToMany(mappedBy = "tipoObservacion", fetch = FetchType.EAGER)
-    private List<Observacion> observacionList;
+//    @OneToMany(mappedBy = "tipoObservacion", fetch = FetchType.EAGER)
+//    private List<Observacion> observacionList;
 
     public TipoObservacion() {
     }
@@ -70,15 +67,14 @@ public class TipoObservacion implements Serializable {
         this.nombre = nombre;
     }
 
-    @JsonIgnore
-    public List<Observacion> getObservacionList() {
-        return observacionList;
-    }
-
-    public void setObservacionList(List<Observacion> observacionList) {
-        this.observacionList = observacionList;
-    }
-
+//    @JsonIgnore
+//    public List<Observacion> getObservacionList() {
+//        return observacionList;
+//    }
+//
+//    public void setObservacionList(List<Observacion> observacionList) {
+//        this.observacionList = observacionList;
+//    }
     @Override
     public int hashCode() {
         int hash = 0;
@@ -103,5 +99,10 @@ public class TipoObservacion implements Serializable {
     public String toString() {
         return "com.ub.st.entities.negocio.TipoObservacion[ id=" + id + " ]";
     }
-    
+
+    @Override
+    public Integer obtenIdEntidad() {
+        return id;
+    }
+
 }

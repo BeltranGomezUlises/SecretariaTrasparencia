@@ -38,7 +38,7 @@ public class EnteFiscalizador extends EntitySQL<Integer> implements Serializable
     @NotNull
     @Size(min = 1, max = 2147483647)
     @Column(name = "nombre")
-    private String nombre;  
+    private String nombre;
     @OneToMany(mappedBy = "enteFiscalizador", fetch = FetchType.EAGER)
     private List<AreaFiscalizadora> areaFiscalizadoraList;
 
@@ -104,5 +104,5 @@ public class EnteFiscalizador extends EntitySQL<Integer> implements Serializable
     public Integer obtenIdEntidad() {
         return id;
     }
-    
+
 }

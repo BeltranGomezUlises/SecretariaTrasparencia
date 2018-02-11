@@ -20,10 +20,10 @@ package com.ub.st.utils.exceptions;
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
-public class ContraseñaIncorrectaException extends Exception{
+public class ContraseñaIncorrectaException extends Exception {
 
     public ContraseñaIncorrectaException(String message) {
         super(message);
     }
-        
+
 }

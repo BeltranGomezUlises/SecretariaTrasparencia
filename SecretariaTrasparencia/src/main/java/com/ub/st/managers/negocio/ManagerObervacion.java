@@ -23,5 +23,5 @@ public class ManagerObervacion extends ManagerSQL<Observacion, Integer> {
     public String nombreColeccionParaRegistros() throws UnsupportedOperationException {
         return "observaciones";
     }
-    
+
 }

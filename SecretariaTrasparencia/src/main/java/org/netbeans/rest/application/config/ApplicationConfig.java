@@ -30,10 +30,7 @@ public class ApplicationConfig extends Application {
     }
 
     /**
-     * Do not modify addRestResourceClasses() method.
-     * It is automatically populated with
-     * all resources defined in the project.
-     * If required, comment out calling this method in getClasses().
+     * Do not modify addRestResourceClasses() method. It is automatically populated with all resources defined in the project. If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.ub.st.services.commons.ServiceFacade.class);
@@ -45,6 +42,7 @@ public class ApplicationConfig extends Application {
         resources.add(com.ub.st.services.negocio.EntesFiscalizadores.class);
         resources.add(com.ub.st.services.negocio.EntesFiscalizados.class);
         resources.add(com.ub.st.services.negocio.EntidadesCoordinadas.class);
+        resources.add(com.ub.st.services.negocio.EstatusObservaciones.class);
         resources.add(com.ub.st.services.negocio.Obervaciones.class);
         resources.add(com.ub.st.services.negocio.OrganismosDescentralizados.class);
         resources.add(com.ub.st.services.negocio.OrganismosDesconcentrados.class);
@@ -52,7 +50,8 @@ public class ApplicationConfig extends Application {
         resources.add(com.ub.st.services.negocio.Permisos.class);
         resources.add(com.ub.st.services.negocio.Secretarias.class);
         resources.add(com.ub.st.services.negocio.Seguimientos.class);
+        resources.add(com.ub.st.services.negocio.TiposObservaciones.class);
         resources.add(com.ub.st.services.negocio.Usuarios.class);
     }
-    
+
 }

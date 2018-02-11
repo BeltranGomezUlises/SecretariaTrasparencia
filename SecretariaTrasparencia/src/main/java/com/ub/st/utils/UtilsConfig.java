@@ -11,7 +11,7 @@ import com.ub.st.entities.negocio.ConfigMail;
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
-public final class UtilsConfig {       
+public final class UtilsConfig {
 
     static int getSecondsSessionJwtExp() {
         return 120000;
@@ -21,5 +21,4 @@ public final class UtilsConfig {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
 }

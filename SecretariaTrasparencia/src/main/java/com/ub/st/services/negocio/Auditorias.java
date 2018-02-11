@@ -21,32 +21,40 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
 /**
- * servicios lcrud para auditorias
+ * Servicios lcrud para auditorias y de negocio
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Path("/auditorias")
-public class Auditorias extends ServiceFacade<ManagerAuditoria, Auditoria, Integer>{
-    
+public class Auditorias extends ServiceFacade<ManagerAuditoria, Auditoria, Integer> {
+
     public Auditorias() {
         super(ManagerAuditoria.class);
     }
 
+    /**
+     * Genera los datos de los importes de una auditoria en particular
+     *
+     * @param token token de sesion
+     * @param id identificador de la auditoria a generar los importes
+     * @return modelo de importes de una auditoria
+     */
     @GET
     @Path("/importePendienteAuditoria/{id}")
-    public Response<ModelImportePendiente> importePendienteAuditoria(@HeaderParam("Authorization") String token, @PathParam("id") int id){
+    public Response<ModelImportePendiente> importePendienteAuditoria(@HeaderParam("Authorization") String token, @PathParam("id") int id) {
         Response<ModelImportePendiente> r = new Response();
         try {
             ManagerAuditoria managerAuditoria = new ManagerAuditoria();
-            managerAuditoria.setToken(token);  
-            r.setData(managerAuditoria.importePendienteAuditoria(id));            
+            managerAuditoria.setToken(token);
+            r.setData(managerAuditoria.importePendienteAuditoria(id));
         } catch (TokenExpiradoException | TokenInvalidoException e) {
             setInvalidTokenResponse(r);
         } catch (Exception ex) {
             Logger.getLogger(Auditorias.class.getName()).log(Level.SEVERE, null, ex);
             setErrorResponse(r, ex);
         }
-        
+
         return r;
     }
-    
+
 }

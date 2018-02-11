@@ -5,38 +5,60 @@
  */
 package com.ub.st.models.generales;
 
-import java.util.Objects;
-
 /**
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 public class Observacion {
 
-    private int año;
-    private int añoRevisa;
+    private int anio;
+    private int anioRevisa;
+    private int numeroExpediente;
+    private boolean ipra;
+    private String estadoIpra;
     private String auditoria;
-    private int numeroObservacion;
-    private float importe;
+    private String numeroObservacion;
+    private double montoObservado;
+    private double montoAclarado;
     private boolean situacionCorrectiva;
-    private String situacionCorrectivaDes;
     private boolean situacionPreventiva;
     private String enteFizcalizado;
     private String descripcion;
+    private String areaFiscalizada;
 
-    public Observacion() {
+    public String getAreaFiscalizada() {
+        return areaFiscalizada;
     }
 
-    public Observacion(int año, int añoRevisa, int numeroObservacion, float importe, boolean situacionCorrectiva, String situacionCorrectivaDes, boolean situacionPreventiva, String enteFizcalizado, String descripcion) {
-        this.año = año;
-        this.añoRevisa = añoRevisa;
-        this.numeroObservacion = numeroObservacion;
-        this.importe = importe;
-        this.situacionCorrectiva = situacionCorrectiva;
-        this.situacionCorrectivaDes = situacionCorrectivaDes;
-        this.situacionPreventiva = situacionPreventiva;
-        this.enteFizcalizado = enteFizcalizado;
-        this.descripcion = descripcion;
+    public void setAreaFiscalizada(String areaFiscalizada) {
+        this.areaFiscalizada = areaFiscalizada;
+    }
+
+    public boolean isIpra() {
+        return ipra;
+    }
+
+    public void setIpra(boolean ipra) {
+        this.ipra = ipra;
+    }
+
+    public String getEstadoIpra() {
+        return estadoIpra;
+    }
+
+    public void setEstadoIpra(String estadoIpra) {
+        this.estadoIpra = estadoIpra;
+    }
+
+    public int getNumeroExpediente() {
+        return numeroExpediente;
+    }
+
+    public void setNumeroExpediente(int numeroExpediente) {
+        this.numeroExpediente = numeroExpediente;
+    }
+
+    public Observacion() {
     }
 
     public String getAuditoria() {
@@ -47,36 +69,28 @@ public class Observacion {
         this.auditoria = auditoria;
     }
 
-    public int getAño() {
-        return año;
+    public int getAnio() {
+        return anio;
     }
 
-    public void setAño(int año) {
-        this.año = año;
+    public void setAnio(int anio) {
+        this.anio = anio;
     }
 
-    public int getAñoRevisa() {
-        return añoRevisa;
+    public int getAnioRevisa() {
+        return anioRevisa;
     }
 
-    public void setAñoRevisa(int añoRevisa) {
-        this.añoRevisa = añoRevisa;
+    public void setAnioRevisa(int anioRevisa) {
+        this.anioRevisa = anioRevisa;
     }
 
-    public int getNumeroObservacion() {
+    public String getNumeroObservacion() {
         return numeroObservacion;
     }
 
-    public void setNumeroObservacion(int numeroObservacion) {
+    public void setNumeroObservacion(String numeroObservacion) {
         this.numeroObservacion = numeroObservacion;
-    }
-
-    public float getImporte() {
-        return importe;
-    }
-
-    public void setImporte(float importe) {
-        this.importe = importe;
     }
 
     public boolean isSituacionCorrectiva() {
@@ -85,14 +99,6 @@ public class Observacion {
 
     public void setSituacionCorrectiva(boolean situacionCorrectiva) {
         this.situacionCorrectiva = situacionCorrectiva;
-    }
-
-    public String getSituacionCorrectivaDes() {
-        return situacionCorrectivaDes;
-    }
-
-    public void setSituacionCorrectivaDes(String situacionCorrectivaDes) {
-        this.situacionCorrectivaDes = situacionCorrectivaDes;
     }
 
     public boolean isSituacionPreventiva() {
@@ -119,34 +125,20 @@ public class Observacion {
         this.descripcion = descripcion;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.auditoria);
-        hash = 47 * hash + Objects.hashCode(this.enteFizcalizado);
-        return hash;
+    public double getMontoObservado() {
+        return montoObservado;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Observacion other = (Observacion) obj;
-        if (!Objects.equals(this.auditoria, other.auditoria)) {
-            return false;
-        }
-        if (!Objects.equals(this.enteFizcalizado, other.enteFizcalizado)) {
-            return false;
-        }
-        return true;
+    public void setMontoObservado(double montoObservado) {
+        this.montoObservado = montoObservado;
     }
 
-    
+    public double getMontoAclarado() {
+        return montoAclarado;
+    }
+
+    public void setMontoAclarado(double montoAclarado) {
+        this.montoAclarado = montoAclarado;
+    }
+
 }

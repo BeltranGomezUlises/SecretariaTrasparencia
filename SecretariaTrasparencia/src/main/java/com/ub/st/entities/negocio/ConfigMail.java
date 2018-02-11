@@ -6,11 +6,11 @@
 package com.ub.st.entities.negocio;
 
 //import com.ub.st.entities.commons.EntityMongo;
-
 /**
  * entidad de configuracion de correo para su uso por el sistema
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
- * 
+ *
  */
 public class ConfigMail {//extends EntityMongo<String> {
 

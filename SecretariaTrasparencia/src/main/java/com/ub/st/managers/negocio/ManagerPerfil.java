@@ -23,6 +23,5 @@ public class ManagerPerfil extends ManagerSQL<Perfil, Integer> {
     public String nombreColeccionParaRegistros() throws UnsupportedOperationException {
         return "perfiles";
     }
-    
-    
+
 }

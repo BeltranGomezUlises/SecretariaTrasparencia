@@ -6,7 +6,6 @@
 package com.ub.st.managers.negocio;
 
 import com.ub.st.daos.negocio.DaoAuditoria;
-import com.ub.st.daos.negocio.DaoObervacion;
 import com.ub.st.daos.negocio.DaoSeguimiento;
 import com.ub.st.entities.negocio.Auditoria;
 import com.ub.st.entities.negocio.Observacion;
@@ -53,9 +52,9 @@ public class ManagerAuditoria extends ManagerSQL<Auditoria, Integer> {
 
         return modelImporte;
     }
-    
-    public ModelImportePendiente importePendienteAuditorias(List<Auditoria> auditorias){        
-        ModelImportePendiente importePendiente = new ModelImportePendiente();        
+
+    public ModelImportePendiente importePendienteAuditorias(List<Auditoria> auditorias) {
+        ModelImportePendiente importePendiente = new ModelImportePendiente();
         double importeObservado = 0;
         double importeAclarado = 0;
         double importeRecuperado = 0;
@@ -63,16 +62,16 @@ public class ManagerAuditoria extends ManagerSQL<Auditoria, Integer> {
             for (Observacion observacion : auditoria.getObservacionList()) {
                 importeObservado += observacion.getImporteObservado();
                 for (Seguimiento seguimiento : observacion.getSeguimientoList()) {
-                    importeAclarado  += seguimiento.getImporteAclarado();
+                    importeAclarado += seguimiento.getImporteAclarado();
                     importeRecuperado += seguimiento.getImporteRecuperado();
                 }
             }
         }
         importePendiente.setImporteAclarado(importeAclarado);
         importePendiente.setImporteRecuperado(importeRecuperado);
-        importePendiente.setImporteObservado(importeObservado);        
+        importePendiente.setImporteObservado(importeObservado);
         importePendiente.setImportePendiente(importeObservado - (importeAclarado + importeRecuperado));
-        return importePendiente;                        
+        return importePendiente;
     }
 
 }

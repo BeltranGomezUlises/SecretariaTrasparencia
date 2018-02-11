@@ -22,6 +22,7 @@ import javax.validation.constraints.Size;
 
 /**
  * Entidad de usuarios
+ *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
 @Entity
@@ -149,5 +150,5 @@ public class Usuario extends EntitySQL<Integer> implements Serializable {
     public Integer obtenIdEntidad() {
         return id;
     }
-    
+
 }

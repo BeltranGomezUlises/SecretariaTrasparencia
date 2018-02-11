@@ -9,10 +9,10 @@ package com.ub.st.utils.exceptions;
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
-public class UsuarioInexistenteException extends Exception{
+public class UsuarioInexistenteException extends Exception {
 
-        public UsuarioInexistenteException(String menssage) {
-            super(menssage);
-        }        
-    
+    public UsuarioInexistenteException(String menssage) {
+        super(menssage);
+    }
+
 }

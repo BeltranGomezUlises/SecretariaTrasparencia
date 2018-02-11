@@ -13,7 +13,7 @@ import com.ub.st.managers.commons.ManagerSQL;
  *
  * @author Ulises Beltrán Gómez --- beltrangomezulises@gmail.com
  */
-public class ManagerContratista extends ManagerSQL<Contratista, Integer>{
+public class ManagerContratista extends ManagerSQL<Contratista, Integer> {
 
     public ManagerContratista() {
         super(new DaoContratista());
@@ -23,5 +23,5 @@ public class ManagerContratista extends ManagerSQL<Contratista, Integer>{
     public String nombreColeccionParaRegistros() throws UnsupportedOperationException {
         return "contratistas";
     }
-    
+
 }
